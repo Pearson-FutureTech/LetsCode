@@ -36,7 +36,7 @@ Where is it hosted?
 
 Let's Code! is up on GitHub Pages at:
 
-http://pearson-futuretech.github.com/letscode
+http://pearson-futuretech.github.com/LetsCode/
 
 
 
