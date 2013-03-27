@@ -1,0 +1,104 @@
+
+
+#tutorial-steps {
+
+	@border-size: 6;
+
+	list-style-type: none;
+	margin: 0;
+	color: #000;
+
+    li {
+		display: none;
+		position: absolute;
+		z-index: 2000;
+		list-style-type: none;
+		pointer-events: none;
+
+        float: left;
+        left: 50%;
+        top: 30%;
+
+		.content {
+
+            float: left;
+            left: -50%;
+            top: -50%;
+
+            position: relative;
+			width: 300px;
+			min-height: 80px; // so that left/right arrows display correctly
+			border: (0px + @border-size) solid @col-ui-blue;
+			border-radius: 40px;
+			padding: @ui-spc*2;
+			background-color: #fff;
+            box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.25);
+
+            p {
+				font-size: 1.2em;
+				text-align: center;
+				line-height: 1.2em;
+				margin-top: 0.5em;
+                margin-bottom: 0.5em;
+
+                dfn {
+                    font-style: normal;
+                    font-weight: bold;
+                }
+                instruction {
+                    font-weight: bold;
+                    color: darken(@col-ui-blue, 40%);
+                }
+                &.left {
+                    text-align: left;
+                }
+            }
+
+			.continue {
+				display: block;
+				background-color: @col-ui-blue;
+				border: 0;
+				border-radius: 15px;
+				margin: 1em auto 0 auto;
+				color: #fff;
+				padding: 5px 10px;
+				font-size: 1.2em;
+				pointer-events: auto;
+			}
+        }
+
+        &.small, &.substep {
+            p { font-size: 1em; }
+            .content {
+                width: 140px;
+                min-height: 30px;
+                padding: @ui-spc/2 @ui-spc;
+                border-radius: 20px;
+            }
+        }
+
+        // arrow classes
+        &.arrow-top {    .content { .cssarrow-top(30, @border-size, @col-ui-blue, #fff); } }
+		&.arrow-right {  .content { .cssarrow-right(30, @border-size, @col-ui-blue, #fff); } }
+		&.arrow-bottom { .content { .cssarrow-bottom(30, @border-size, @col-ui-blue, #fff); } }
+		&.arrow-left {   .content { .cssarrow-left(30, @border-size, @col-ui-blue, #fff); } }
+    }
+
+	.substeps {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+    // custom tutorial steps
+    .step-help-button {
+        top: 50px;
+        right: 50px;
+        left: auto;
+        width: 230px;
+    }
+
+    .substep.step-property-name, .substep.step-property-value, {
+        .content { width: 90px; }
+    }
+}

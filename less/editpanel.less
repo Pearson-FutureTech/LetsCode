@@ -1,0 +1,580 @@
+//=================================================================================================
+//
+// editPanel.less
+//
+
+#editpanel {
+    position: fixed;
+    bottom: 0;
+	left: 0 !important;
+	top: auto !important;
+	right: 0;
+	width: auto !important;
+	height: @edit-panel-height;
+
+    min-width: @min-width;
+    padding: @ui-spc;
+    background: @col-background;
+    background: -webkit-linear-gradient(270deg, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
+    background: -moz-linear-gradient(bottom, lighten(@col-background, 20%) 0px, darken(@col-background, 10%) 3px);
+
+    .ui-resizable-n {
+        position: absolute;
+        left: 50%; top: @ui-spc/2;
+        width: 42px; height: 18px;
+        background-image: url('../img/drag-handle.png');
+        &:hover {
+        	background-image: url('../img/drag-handle-active.png');
+		}
+    }
+
+	&.ui-resizable-resizing .ui-resizable-n {
+		background-image: url('../img/drag-handle-active.png');
+	}
+
+    #objselpanel {
+        position: absolute;
+        height: @button-height;
+        left: @ui-spc;
+        top: @ui-spc;
+        margin: 0;
+        padding: 0;
+    }
+    #btn-selobject {
+        float: left;
+        width: 120px;
+        height: 15px;
+        text-align: left;
+		overflow: hidden;
+        .ui-button-icon(right, '../img/icons/icon-uparrow.png', 3px);
+
+		/* Custom-styled select */
+		select {
+			color: @col-button-text;
+			text-shadow:
+				1px 1px 1px rgba(255, 255, 255, 0.25),
+					-1px -1px 1px rgba(0, 0, 0, 0.25);
+			background: transparent;
+			width: 150px;
+			height: 25px;
+			border: 0;
+			/* Very hacky - can't seem to get it to appear inside containing div when it's wider... */
+			position: relative;
+			top: -8px;
+			left: -15px;
+			padding: 5px 5px 5px 10px;
+			/* Hide standard dropdown arrow for WebKit */
+			-webkit-appearance: none;
+			/* Hide standard dropdown arrow from Firefox (again, hacky) */
+			width: 170px;
+			overflow: hidden;
+		}
+
+    }
+    #btn-addobject {
+        float: left;
+        width: 25px;
+        font-size: 1.3em;
+        line-height:80%;
+        //.ui-button-icon(left, '../img/icons/icon-add-white.png');
+    }
+
+    #viewselpanel {
+        position: absolute;
+        height: @button-height;
+        right: @ui-spc;
+        top: @ui-spc;
+        margin: 0;
+        padding: 0;
+    }
+    #btn-viewvisual {
+        float: right;
+        width: 70px;
+        .ui-button-icon(left, '../img/icons/icon-eye-white.png');
+    }
+    #btn-viewcode {
+        float: right;
+        width: 70px;
+        .ui-button-icon(left, '../img/icons/icon-code-white.png');
+    }
+    #btn-debug {
+        float: right;
+        width: 80px;
+        margin-right: @ui-spc;
+        .ui-button-icon(left, '../img/icons/icon-debug-white.png');
+        text-align: center; //override .ui-button-icon alignment
+    }
+
+    #tab-methods { left: @ui-spc; }
+    #tab-properties { left: 35%; }
+    #tab-events { right: @ui-spc; }
+
+    .panellist () {
+        position: absolute;
+        width: @panellist-width;
+		top: @tab-top+@tab-height;
+		bottom: @ui-spc;
+        overflow: auto;
+        background: @col-detailspanel;
+
+        &.selected { // overrides when panel selected
+            background: @col-tab-sel;
+            ul {
+                li {
+                    background: @col-panellist;
+                    color: #000;
+                }
+            }
+        }
+        ul { // method and event lists
+            background: transparent;
+            list-style: none;
+            padding: 0;
+            padding-top: @ui-spc;
+            padding-left: @ui-spc;
+            padding-right: @ui-spc;
+            margin: 0;
+
+            .method {
+                .method-event-item();
+                &:hover, &.hover {
+                    .method-arrow-after(@col-panellist-hover);
+                    &.add{
+                        .method-arrow-after(transparent);
+                    }
+                }
+                &.selected { .method-arrow-after(@col-ui-blue); }
+                &.is-linked { .method-arrow-before(@col-ui-orange); }
+            }
+
+            .event {
+                .method-event-item();
+                &:hover, &.hover {
+                    .event-arrow-before(@col-panellist-hover);
+                    &.add{
+                        .event-arrow-before(transparent);
+                    }
+                }
+                &.selected { .event-arrow-before(@col-ui-blue); }
+                &.is-linked { .event-arrow-after(darken(@col-panellist-disabled, 10%)); }
+            }
+        }
+	}
+
+    #methodlistpanel {
+        .panellist();
+        left: @ui-spc;
+        border-bottom-left-radius: 3px;
+        border-left: 1px solid darken(@col-tab, 20%);
+    }
+
+    #eventlistpanel {
+        .panellist();
+        right: @ui-spc;
+        border-bottom-right-radius: 3px;
+        border-right: 1px solid darken(@col-tab, 30%);
+	}
+
+    #detailspanel {
+        position: absolute;
+        top: @tab-top+@tab-height; bottom: @ui-spc;
+        left: @panellist-width+@ui-spc; right: @panellist-width+@ui-spc;
+        overflow: scroll;
+        border-radius: 3px;
+        padding: @ui-spc;
+        background: @col-detailspanel-sel;
+        box-shadow:
+            4px 2px 4px rgba(0, 0, 0, 0.05),
+            -4px 2px 4px rgba(0, 0, 0, 0.05),
+            -4px -2px 4px rgba(0, 0, 0, 0.05);
+        border-left: 1px solid lighten(@col-detailspanel-sel, 5%);
+        border-top: 1px solid lighten(@col-detailspanel-sel, 5%);
+        border-right: 1px solid lighten(@col-detailspanel-sel, 5%);
+
+        &.selected {
+			display: block;
+		}
+
+		.code {
+			padding: @ui-spc;
+			color: black;
+			background: #eee;
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+			border-radius: 3px;
+
+			p, pre {
+				font-family: "Menlo", "Courier New", monospace;
+				font-size: 0.9em;
+				margin: 0 0 1px 0;
+			}
+
+			.comment {
+				color: #aaa;
+			}
+		}
+    }
+}
+
+
+//=================================================================================================
+//
+// Details panels
+//
+
+.paneltitle{
+    margin-top: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#details-contents {
+
+    .comment {
+        font-size: 1em;
+        color: #aaa;
+        margin: -@ui-spc 0 @ui-spc/2 @ui-spc;
+        text-align: center;
+        &:hover {
+            color: #eee;
+            text-decoration: underline;
+        }
+    }
+
+    .method {
+        padding: @ui-spc;
+        color: @col-ui-ltgrey;
+        background: @col-ui-grey;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+    }
+
+}
+
+
+//=================================================================================================
+//
+// Method and event list mixins
+//
+
+.method-event-item () {
+    height: @panellist-height;
+    margin-top: @ui-spc-list;
+    padding-left: @ui-spc+2;
+    padding-right: 0;
+    line-height: 150%;
+    // NB: containing panel will override these when selected
+    //    background: @col-panellist;
+    //    color: #000;
+    background: lighten(@col-panellist-disabled, 10%);
+    color: @col-ui-grey;
+    cursor: default;
+
+    &.disabled {
+        background: lighten(@col-panellist-disabled, 10%);
+        color: @col-ui-grey;
+    }
+    &:hover, &.hover {
+        color: black;
+        background: @col-panellist-hover;
+    }
+    &.selected {
+        background: @col-panellist-sel;
+        font-weight: bold;
+    }
+    &.add {
+        background: transparent;
+        border: none;
+        color: white;
+        opacity: 0.8;
+        padding-left: 20px;
+        background-image: url('../img/icons/icon-add-white-circle.png');
+        background-position: -2px 3px;
+        background-repeat: no-repeat;
+        &:hover, &.hover {
+            opacity: 1.0;
+            text-decoration: underline;
+        }
+        &.disabled {
+            display: none;
+        }
+    }
+}
+
+// arrows
+.method-arrow-before (@arrow-col) {
+    &:after { // right arrow before item
+        content: "";
+        border-color: transparent transparent transparent @arrow-col;
+        border-style: solid;
+        border-width: @panellist-height/2 round(@panellist-height/3);
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: @ui-spc;
+    }
+}
+.method-arrow-after (@arrow-col) {
+    &:before { // right arrow after item
+        content: "";
+        border-color: transparent transparent transparent @arrow-col;
+        border-style: solid;
+        border-width: @bracket-item-height/2 round(@bracket-item-height/3);
+        position:absolute;
+        width: 0;
+        height: 0;
+        right: round(@bracket-item-height/3)-11;
+        z-index: 100;
+    }
+}
+.event-arrow-before (@arrow-col) {
+    &:after { // right arrow before item
+        content: "";
+        border-color: transparent  @arrow-col transparent transparent;
+        border-style: solid;
+        border-width: @panellist-height/2 round(@panellist-height/3);
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -4px;
+    }
+}
+.event-arrow-after (@arrow-col) {
+    &:before { // right arrow after item
+        content: "";
+        border-color: transparent transparent transparent @arrow-col;
+        border-style: solid;
+        border-width: @bracket-item-height/2 round(@bracket-item-height/3);
+        position:absolute;
+        width: 0;
+        height: 0;
+        right: round(@bracket-item-height/3)-11;
+        z-index: 100;
+    }
+}
+
+
+//=================================================================================================
+//
+// Methods and events editing panels
+//
+
+.methodlist, .eventlist {
+    list-style: none;
+    padding: 0;
+    padding-left: @ui-spc;
+
+    li {
+        a {
+            font-weight: bold;
+            padding-right: 5px;
+            color: @col-panellist-hover;
+            &:hover, &.hover {
+                color: @col-ui-blue;
+                text-decoration: underline;
+            }
+        }
+        p {
+            color: darken(white, 10%);
+
+            &.connection {
+                padding-left: @ui-spc;
+            }
+            &.empty {
+                font-style: italic;
+                color: @col-ui-ltgrey;
+            }
+        }
+    }
+}
+
+
+//=================================================================================================
+//
+// Properties editing panel
+//
+
+.proplist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.propitem {
+    margin-left: @ui-spc;
+    margin-right: @ui-spc;
+    padding: @ui-spc/2;
+    height: @panellist-height;
+    color: @col-ui-ltgrey;
+    font-family: @font-family;
+//    font-size: 13px;
+
+    &:hover {
+        background: @col-ui-ltgrey;
+
+        .propdesc{
+            color: @col-ui-dkgrey;
+        }
+        .propdelete {
+            display: inherit;
+        }
+    }
+
+    .propname {
+        float: left;
+        width: 130px;
+        padding: @ui-spc-list;// @ui-spc/2 @ui-spc-list @ui-spc/2;
+        margin-right: @ui-spc-list;
+        background: #fff;
+        color: #000;
+        //cursor: text;
+        //&:hover { // not editable for the time being
+        //    text-decoration: underline;
+        //}
+    }
+    .propvalue {
+        float: left;
+        width: 130px;
+        padding: @ui-spc-list;// @ui-spc/2 @ui-spc-list @ui-spc/2;
+        margin: 0 @ui-spc 0 0;
+        background: lighten(@col-ui-blue, 15%);
+        color: #000;
+		border: 0;
+		height: 16px;
+        font-family: @font-family;
+        font-size: 14px;
+    //cursor: text;
+        &:hover {
+            text-decoration: underline;
+            background: lighten(@col-ui-blue, 0%);
+        }
+		&[readonly] {
+            text-decoration: none;
+            background: desaturate(lighten(@col-ui-blue, 15%), 100%);
+		}
+    }
+    .propdesc {
+        float: left;
+        overflow: hidden;
+        padding: @ui-spc-list;// @ui-spc/2 @ui-spc-list @ui-spc/2;
+        color: @col-ui-ltgrey;
+        //&:hover {  // not editable for the time being
+        //    text-decoration: underline;
+        //}
+    }
+    .propdelete {
+        display:none;
+        float: right;
+        width: 20px;
+        height: 20px;
+        background-image: url('../img/icons/icon-close-white-circle.png');
+        background-position: 0px 3px;
+        background-repeat: no-repeat;
+        opacity: 0.5;
+        &:hover {
+            //background-image: url('../img/icons/icon-close-white-circle.png');
+            opacity: 1.0;
+        }
+    }
+}
+.propadd {
+    margin-left: @ui-spc;
+    margin-right: @ui-spc;
+    padding: @ui-spc/2 + 2 @ui-spc/2 @ui-spc/2 26px;
+    height: @panellist-height;
+    opacity: 0.8;
+    color: white;
+    background-image: url('../img/icons/icon-add-white-circle.png');
+    background-position: 3px 7px;
+    background-repeat: no-repeat;
+    &:hover {
+        opacity: 1.0;
+        text-decoration: underline;
+    }
+    &.disabled {
+        display: none;
+    }
+}
+
+
+
+//=================================================================================================
+//
+// Add new object popup
+//
+
+#library {
+
+	display: none;
+	z-index: 2;
+    position: fixed;
+    width: 400px;
+    left: 120px + @ui-spc;
+    bottom: @edit-panel-height + @ui-spc;
+    margin: 0;
+    padding: 0;
+    border: 3px solid @col-ui-grey;
+	background: @col-ui-grey;
+    border-radius: 3px;
+    box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.5);
+
+    .title {
+        background: @col-ui-grey;
+        background: -webkit-linear-gradient(90deg, @col-ui-grey, darken(@col-ui-grey, 5%));
+        background: -moz-linear-gradient(bottom, @col-ui-grey darken(@col-ui-grey, 5%));
+        font-weight: bold;
+        margin: 0;
+        padding: 8px 0 9px @ui-spc;
+        text-align: center;
+
+        .close-button {
+            content:url('../img/icons/icon-close-white-circle.png');
+            float: right;
+            padding-right: 5px;
+            opacity: 0.5;
+            &:hover {
+                opacity: 1.0;
+            }
+        }
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            list-style: none;
+            width: 100%;
+            height: 70px;
+            @col-listitem: lighten(@col-ui-ltgrey, 30%);
+            @col-listitem-sel: lighten(@col-ui-ltgrey, 20%);
+            background: @col-listitem;
+            background: -webkit-linear-gradient(270deg, @col-listitem, darken(@col-listitem, 10%));
+            background: -moz-linear-gradient(top, @col-listitem darken(@col-listitem, 10%));
+			overflow: hidden;
+			cursor: pointer;
+
+            &:hover {
+                box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.25) inset;
+                background: @col-listitem-sel;
+                background: -webkit-linear-gradient(90deg, @col-listitem-sel, darken(@col-listitem-sel, 10%));
+                background: -moz-linear-gradient(bottom, @col-listitem-sel darken(@col-listitem-sel, 10%));
+            }
+
+            img {
+                width: 60px; height: 60px;
+                float: right;
+                padding: 5px @ui-spc 0 0;
+            }
+            .name {
+                display: block;
+                padding: 23px 0 0 @ui-spc*2;
+                margin: 0;
+                color: black;
+                font-weight: bold;
+            }
+            .desc {
+                display: block;
+                padding: 2px 0 0 @ui-spc*2;
+                margin: 0;
+                color: @col-ui-grey;
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+//=================================================================================================
+//
+// cssarrow.less
+//
+// Arrow code from cssarrowplease.com
+//
+// sample usage: .cssarrow(30, 6, #000, #fff);
+//           or: .cssarrow-top(30, 6, #000, #fff); etc.
+//
+
+// shortcut to add 4 new classes, .arrow-top, .arrow-right, .arrow-bottom and .arrow-left
+.cssarrow(@arrow-size, @border-width, @border-col, @bg-col) {
+
+    &.arrow-top {    .cssarrow-top(@arrow-size, @border-width, @border-col, @bg-col); }
+    &.arrow-right {   .cssarrow-right(@arrow-size, @border-width, @border-col, @bg-col); }
+    &.arrow-bottom { .cssarrow-bottom(@arrow-size, @border-width, @border-col, @bg-col); }
+    &.arrow-left {  .cssarrow-left(@arrow-size, @border-width, @border-col, @bg-col); }
+}
+
+
+.cssarrow-top(@arrow-size, @border-width, @border-col, @bg-col) {
+    .cssarrowbase(@arrow-size, @border-width, @border-col, @bg-col);
+    &:after, &:before {
+        bottom: 100%;
+    }
+    &:after {
+        border-bottom-color: @bg-col;
+        left: 50%;
+        margin-left: (0px - @arrow-size);
+    }
+    &:before {
+        border-bottom-color: @border-col;
+        left: 50%;
+        margin-left: ~`(-@{arrow-size} - Math.round(@{border-width} * 1.41421356)) + 'px'`;
+    }
+}
+
+.cssarrow-right(@arrow-size, @border-width, @border-col, @bg-col) {
+    .cssarrowbase(@arrow-size, @border-width, @border-col, @bg-col);
+    &:after, &:before {
+        left: 100%;
+    }
+    &:after {
+        border-left-color: @bg-col;
+        top: 50%;
+        margin-top: (0px - @arrow-size);
+    }
+    &:before {
+        border-left-color: @border-col;
+        top: 50%;
+        margin-top: ~`(-@{arrow-size} - Math.round(@{border-width} * 1.41421356)) + 'px'`;
+    }
+}
+
+.cssarrow-bottom(@arrow-size, @border-width, @border-col, @bg-col) {
+    .cssarrowbase(@arrow-size, @border-width, @border-col, @bg-col);
+    &:after, &:before {
+        top: 99.8%;
+    }
+    &:after {
+        border-top-color: @bg-col;
+        left: 50%;
+        margin-left: (0px - @arrow-size);
+    }
+    &:before {
+        border-top-color: @border-col;
+        left: 50%;
+        margin-left: ~`(-@{arrow-size} - Math.round(@{border-width} * 1.41421356)) + 'px'`;
+    }
+}
+
+.cssarrow-left(@arrow-size, @border-width, @border-col, @bg-col) {
+    .cssarrowbase(@arrow-size, @border-width, @border-col, @bg-col);
+    &:after, &:before {
+        right: 100%;
+    }
+    &:after {
+        border-right-color: @bg-col;
+        top: 50%;
+        margin-top: (0px - @arrow-size);
+    }
+    &:before {
+        border-right-color: @border-col;
+        top: 50%;
+        margin-top: ~`(-@{arrow-size} - Math.round(@{border-width} * 1.41421356)) + 'px'`;
+    }
+}
+
+
+// common include
+.cssarrowbase(@arrow-size, @border-width, @border-col, @bg-col) {
+
+    position: relative;
+    background: @bg-col;
+    border: (0px + @border-width) solid @border-col;
+
+    &:after, &:before {
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    &:after {
+        border-width: (0px + @arrow-size);
+    }
+    &:before {
+    // cos(PI/4) * 2;
+        border-width: ~`(@{arrow-size} + Math.round(@{border-width} * 1.41421356)) + 'px'`;
+    }
+}
+
+
+// EOF

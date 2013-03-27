@@ -1,0 +1,597 @@
+//=================================================================================================
+//
+// Global.less
+//
+
+// Default font
+@font-family:  arial, sans-serif;
+
+
+// Standard UI Colours
+@col-ui-green: #9c3;
+@col-ui-blue: #6cf;
+@col-ui-orange: #f63;
+@col-ui-ltgrey: #999;
+@col-ui-grey: #666;
+@col-ui-dkgrey: #333;
+
+
+// Colours for UI components
+@col-background: #333;
+
+@col-text: #fff;
+@col-text-disabled: transparent(@col-text, 50%);
+@col-text-sel: @col-ui-blue;
+@col-text-highlight: @col-text;
+
+@col-button: @col-ui-blue;
+@col-button-desel: @col-ui-ltgrey;
+@col-button-disabled: @col-ui-grey;
+@col-button-text: #fff;
+//@col-button-text-disabled: @col-ui-ltgrey; //transparent(@col-button-text, 50%);
+@col-button-toolbar: @col-ui-green;
+@col-button-toolbar-text: #fff;
+
+@col-tab: #999;
+@col-tab-sel: #666;
+@col-tab-top: #fff;
+@col-tab-top-sel: #f63;
+
+@col-panellist: #fff;
+@col-panellist-sel: lighten(@col-ui-blue, 0%);
+@col-panellist-disabled: #999;
+@col-panellist-hover: lighten(@col-ui-blue, 20%);
+@col-detailspanel: #999;
+@col-detailspanel-sel: #585858;
+
+@col-stage-label-bg: #444; //darken(@col-ui-grey, 0%);
+@col-stage-label-highlight: @col-ui-blue;
+@col-stage-label-connectmarker: @col-ui-orange;
+@col-stage-label-text: #fff;
+
+
+// Geometry
+@min-width: 1004px;                 // 1024px less @ui-spc on each side
+@ui-spc: 10px;                      // Default spacer between UI components
+@ui-spc-list: round(@ui-spc/3);     // spacer between list items
+@ui-bradius: 14px;
+@button-height: 20px;
+@tab-height: 25px;
+@tab-top: @ui-spc*2 + @tab-height;
+@panellist-width: 180px;
+@panellist-height: 20px;
+@bracket-width: 20%;
+@bracket-thickness: 10px;
+@bracket-item-height: 20px;
+@edit-panel-height: 280px;
+@lesson-panel-height: 25px;
+
+
+html {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 768px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: arial, sans-serif;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: @col-text;
+	background: #999;
+}
+
+#letscode {
+	display: none;
+}
+
+a {
+    color: @col-text;
+    text-decoration: none;
+    &:hover {
+        color: @col-text-highlight;
+    }
+}
+
+.ui-button {
+    //height: @button-height;
+    background: @col-button;
+    background: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
+    background: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
+    padding: @ui-spc/2 @ui-spc*1.5 @ui-spc/2 @ui-spc*1.5;
+    border-radius: @ui-bradius;
+    color: @col-button-text;
+    text-shadow:
+        1px 1px 1px rgba(255, 255, 255, 0.25),
+        -1px -1px 1px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    cursor: default;
+    display: inline-block;
+
+    // contained elements
+    select {
+        font-family: @font-family;
+        font-size: 13px;
+    }
+
+    // button groups
+    &.group-left {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+    }
+    &.group-middle {
+        border-left: 1px solid darken(@col-button, 20%);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+    }
+    &.group-right {
+        border-left: 1px solid darken(@col-button, 20%);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    // button states and pseudo-classes
+    &:hover {
+        background: lighten(@col-button, 10%);
+        background: -webkit-linear-gradient(270deg, lighten(@col-button, 10%), @col-button);
+        background: -moz-linear-gradient(top, lighten(@col-button, 10%), @col-button);
+        color: @col-text-highlight;
+    }
+    &.deselected {
+        background: @col-button-desel;
+        background: -webkit-linear-gradient(270deg, @col-button-desel, darken(@col-button-desel, 20%));
+        background: -moz-linear-gradient(top, @col-button-desel, darken(@col-button-desel, 20%));
+
+        &:hover {
+            background: lighten(@col-button-desel, 10%);
+            background: -webkit-linear-gradient(270deg, lighten(@col-button-desel, 10%), @col-button-desel);
+            background: -moz-linear-gradient(top, lighten(@col-button-desel, 10%), @col-button-desel);
+            color: @col-text-highlight;
+        }
+    }
+    &.disabled {
+        background: @col-button-disabled;
+        background: -webkit-linear-gradient(270deg, lighten(@col-button-disabled, 10%), @col-button-disabled);
+        background: -moz-linear-gradient(top, lighten(@col-button-disabled, 10%), @col-button-disabled);
+        //color: @col-button-text;
+        opacity: 0.5;
+        &:hover { // override highlight when disabled
+            background: @col-button-disabled;
+            background: -webkit-linear-gradient(270deg, lighten(@col-button-disabled, 10%), @col-button-disabled);
+            background: -moz-linear-gradient(top, lighten(@col-button-disabled, 10%), @col-button-disabled);
+            color: @col-button-text;
+        }
+    }
+}
+// optional icon within button
+.ui-button-icon(@float, @icon-url, @margin-top:0px) when (@float = left) {
+    text-align: right;
+    &:before {
+        padding-right: @ui-spc;
+    }
+}
+.ui-button-icon(@float, @icon-url, @margin-top:0px) when (@float = right) {
+    text-align: left;
+    &:before {
+        padding-left: @ui-spc;
+    }
+}
+.ui-button-icon(@float, @icon-url, @margin-top:0px) {
+    &:before {
+        content:url(@icon-url);
+        float: @float;
+        margin-top: @margin-top;
+        height: 0px;
+    }
+    &.disabled { opacity: 0.5; }
+}
+
+
+.toolbar .ui-button {
+    background: @col-button-toolbar;
+    background: -webkit-linear-gradient(270deg, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+    background: -moz-linear-gradient(top, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+    color: @col-button-toolbar-text;
+
+    &:hover {
+        background: lighten(@col-button-toolbar, 10%);
+        background: -webkit-linear-gradient(270deg, lighten(@col-button-toolbar, 10%), @col-button-toolbar);
+        background: -moz-linear-gradient(top, lighten(@col-button-toolbar, 10%), @col-button-toolbar);
+        color: @col-text-highlight;
+    }
+    &.disabled {
+        opacity: 0.5;
+        &:hover { // override highlight when disabled
+            background: @col-button-toolbar;
+            background: -webkit-linear-gradient(270deg, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+            background: -moz-linear-gradient(top, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+            color: @col-button-toolbar-text;
+        }
+    }
+}
+
+.ui-tab {
+    position: absolute;
+    width: 30%;
+    height: @tab-height;
+    top: @tab-top;
+    background: @col-tab;
+    border-top-left-radius: @ui-bradius;
+    border-top-right-radius: @ui-bradius;
+    border-top: 3px solid @col-tab-top;
+    border-left: 1px solid darken(@col-tab, 20%);
+    border-right: 1px solid darken(@col-tab, 30%);
+    padding-top: 3px;
+    text-align: center;
+    cursor: default;
+
+    &:hover {
+        //color: @col-text-highlight;
+        border-top: 3px solid lighten(@col-tab-top-sel, 15%);
+    }
+    &.selected {
+        background: @col-tab-sel;
+        border-top: 3px solid @col-tab-top-sel;
+        font-weight: bold;
+    }
+    &.disabled {
+        background: @col-button-disabled;
+        color: @col-text-disabled;
+        border: 1px solid darken(@col-button-disabled, 20%);
+    }
+}
+
+.ui-popup{
+    @ui-popup-border-size: 6;
+    @ui-popup-border-col: @col-ui-blue;
+    @ui-popup-background-col: @col-ui-dkgrey;
+    @ui-popup-text-col: @col-ui-ltgrey;
+
+    position: absolute;
+    width: 300px;
+    //min-height: 80px; // so that left/right arrows display correctly
+    margin: 0;
+    padding: @ui-spc*2;
+    border-radius: 40px;
+    color: @ui-popup-text-col;
+    background-color: @ui-popup-background-col;
+    box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.25);
+
+    // add in arrow classes .arrow-top, .arrow-right, .arrow-bottom and .arrow-left
+    .cssarrow(30, @ui-popup-border-size, @ui-popup-border-col, @ui-popup-background-col);
+
+    p, h1 {
+        text-align: center;
+        line-height: 1.2em;
+        margin: @ui-spc*2 0 0 0;
+
+        &:first-child { margin-top: 0; }
+    }
+    h1 {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: lighten(@ui-popup-text-col, 10%);
+    }
+    .link {
+        color: @col-ui-blue;
+        &:hover { text-decoration: underline; }
+    }
+
+    .ui-button {    // increase spacing between buttons in popups
+        margin-left: @ui-spc;
+        margin-right: @ui-spc;
+    }
+}
+
+
+.toolbar {
+    display: block;
+    height: @button-height + @ui-spc/2;
+    background: @col-background;
+    background: -webkit-linear-gradient(90deg, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
+    background: -moz-linear-gradient(bottom, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
+    padding: @ui-spc;
+	min-width: 1002px;
+
+    &:before { // letscode logo
+        content:url('../img/letscode-logo-toolbar.png');
+        float: left;
+        margin-top: -4px;
+        padding-right: @ui-spc*2;
+    }
+    #tb-projname {
+        line-height: 23px;
+        margin-left: -10px;
+    }
+    #tb-undo {
+        float: right;
+        margin-right: @ui-spc;
+        .ui-button-icon(left, '../img/icons/icon-undo.png');
+    }
+    #tb-redo {
+        float: right;
+        margin-right: @ui-spc;
+        .ui-button-icon(left, '../img/icons/icon-redo.png');
+    }
+    #tb-publish {
+        float: right;
+        margin-right: @ui-spc;
+    }
+    #tb-close {
+        float: right;
+        margin-right: @ui-spc;
+        .ui-button-icon(right, '../img/icons/icon-close-white-circle.png', 1px);
+    }
+    .help {
+        z-index: 500;
+        width: 50px;
+        height: 25px;
+        padding: 0;
+        float: right;
+        margin-right: @ui-spc;
+        background: @col-ui-orange;
+        background: -webkit-linear-gradient(90deg, @col-ui-orange, darken(@col-ui-orange, 10%));
+        background: -moz-linear-gradient(bottom, @col-ui-orange, darken(@col-ui-orange, 10%));
+        color: #fff;
+        text-align: center;
+        margin-top: -10px;
+        padding-top: 15px;
+    }
+	#tb-editpreview {
+		float: right;
+		height: @button-height;
+		margin: 0 2*@ui-spc 0 0;
+
+		.ui-button {
+			float: right;
+			width: 60px;
+			background: @col-button;
+			background: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
+			background: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
+		}
+
+		.ui-button.deselected {
+			background: @col-button-desel;
+			background: -webkit-linear-gradient(270deg, @col-button-desel, darken(@col-button-desel, 20%));
+			background: -moz-linear-gradient(top, @col-button-desel, darken(@col-button-desel, 20%));
+		}
+	}
+    .fullscreen {
+        float: right;
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+
+        background-image: url('../img/icons/icon-fullscreen-off.png');
+        &:hover {
+            background-image:url('../img/icons/icon-fullscreen-off-hover.png');
+        }
+    }
+}
+
+.tb-fullscreen () {
+    background-image:url('../img/icons/icon-fullscreen-on.png');
+    &:hover {
+        background-image:url('../img/icons/icon-fullscreen-on-hover.png');
+    }
+}
+// apparently these need to be repeated to work
+//  -- see http://www.sitepoint.com/html5-full-screen-api/#fbid=LmAi3nyqiZr
+body:full-screen            .fullscreen { .tb-fullscreen(); }
+body:-webkit-full-screen    .fullscreen { .tb-fullscreen(); }
+body:-moz-full-screen       .fullscreen { .tb-fullscreen(); }
+body:-o-full-screen         .fullscreen { .tb-fullscreen(); }
+body:-ms-full-screen        .fullscreen { .tb-fullscreen(); }
+
+
+#lessonpanel {
+    position: absolute;
+    top: 45px; left: 0; right: 0;
+	height: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: @ui-spc;
+	z-index: 1;
+
+	.tutorial-description {
+		float: left;
+		p { margin: 0; }
+	}
+
+    .close-button {
+        display: inline;
+        float: right;
+        content:url('../img/icons/icon-close-white-circle.png');
+        padding-right: 0;
+        padding-top: 0;
+        padding-left: 0;
+    }
+}
+
+#debugpanel {
+    background: rgba(0, 0, 0, 0.25);
+
+    #debuglabel {
+
+    }
+    #btn-dbgcontinue {
+
+    }
+}
+
+//generic object highlight glowing pulse
+.highlight {
+    .border-pulse() {
+        from {
+            box-shadow: inset 0 0 10px 4px lighten(@col-ui-blue, 10%),
+                        0px 0px 10px 4px lighten(@col-ui-blue, 10%);
+        }
+        to {
+            box-shadow: inset 0 0 10px 4px fade(darken(@col-ui-blue, 10%), 80%),
+                        0px 0px 10px 4px fade(darken(@col-ui-blue, 10%), 80%);
+        }
+    }
+
+    /*z-index: 2000;*/
+    @keyframes border-pulse { .border-pulse; }
+    @-webkit-keyframes border-pulse { .border-pulse; }
+    animation: border-pulse 1s;
+    -webkit-animation: border-pulse 1s;
+    -moz-animation: border-pulse 1s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    -moz-animation-direction: alternate;
+}
+
+//for fading out objects during the tutorial
+.fade {
+	-webkit-filter: grayscale(100%) brightness(-0.15) contrast(50%);
+//    -moz-filter: grayscale(100%); // brightness(-0.15) contrast(50%);
+//    filter: grayscale(1);// brightness(-0.15) contrast(50%);
+
+}
+
+
+//=================================================================================================
+//
+// publish panels
+//
+
+#publish-placeholder {
+    position: absolute;
+    right: 66px;
+    top: 64px;
+
+    #publish-inprogress {
+        img {
+            position: relative;
+            top: 10px;
+            left: 140px;
+        }
+    }
+    #publish-share {
+        #publish-email    { .ui-button-icon(left, '../img/icons/icon-share-email.png', -3px); }
+        #publish-facebook { .ui-button-icon(left, '../img/icons/icon-share-facebook.png', -3px); }
+        #publish-twitter  { .ui-button-icon(left, '../img/icons/icon-share-twitter.png', -3px); }
+    }
+}
+
+
+//=================================================================================================
+//
+// help panels
+//
+
+.help-panel {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20000;
+}
+
+.help-frame {
+    position: absolute;
+    left: 10%; right: 10%;
+    top: 10%; bottom: 10%;
+    margin: 0;
+    padding: 0;
+    border: 6px solid @col-ui-dkgrey;
+    box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: @ui-bradius;
+    background: white;
+
+    > h1 {
+        background: @col-ui-grey;
+        color: white;
+        margin: 0;
+        padding: @ui-spc/2 @ui-spc;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        font-size: 2em;
+    }
+    .help-close {
+        content:url('../img/icons/icon-close-white-circle.png');
+        float: right;
+        padding-right: 5px;
+        padding-top: 10px;
+        opacity: 0.5;
+        &:hover {
+            opacity: 1.0;
+        }
+    }
+    > div {
+        position: absolute;
+        left: 0; right: 0; top: 43px; bottom: 0;
+        margin: 5px;
+        overflow: scroll;
+        color: #222;
+        padding: @ui-spc;
+
+        p {
+            padding-left: @ui-spc;
+            margin-top: @ui-spc/2;
+        }
+        a {
+            color: darken(@col-ui-blue, 30%);
+            font-weight: bold;
+            &:hover {
+                color: @col-ui-blue;
+            }
+        }
+        h1 {
+            font-size: 1.5em;
+            color: @col-ui-green;
+        }
+        h3 {
+            padding-left: @ui-spc;
+            font-size: 1.2em;
+        }
+        term {
+            font-weight: bold;
+        }
+        // 2nd div onwards...
+        > div:nth-child(n+2) {
+          margin-top: 3em;
+        }
+    }
+}
+
+
+//=================================================================================================
+//
+// Global mixins
+//
+
+.rotate(@angle) {
+    transform:rotate(@angle);
+    -ms-transform:rotate(@angle); /* IE 9 */
+    -moz-transform:rotate(@angle); /* Firefox */
+    -webkit-transform:rotate(@angle); /* Safari and Chrome */
+    -o-transform:rotate(@angle); /* Opera */
+}
+.transform(@trans) {
+    transform:@trans;
+    -ms-transform:@trans; /* IE 9 */
+    -moz-transform:@trans; /* Firefox */
+    -webkit-transform:@trans; /* Safari and Chrome */
+    -o-transform:@trans; /* Opera */
+}
+
+
+/* Import other (specific) stylesheets */
+
+@import "cssarrow.less";
+@import "editpanel.less";
+@import "stage.less";
+@import "tutorial.less";
+@import "home.less";

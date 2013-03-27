@@ -1,0 +1,14 @@
+<p>Methods are actions that this object can perform.</p>
+<ul class="methodlist">
+    {{#if methods.length}}
+        {{#each methods}}
+        <li>
+           <p><a href="#">{{name}}</a>{{comment}}</p>
+        <li>
+        {{/each}}
+    {{else}}
+        <li>
+            <p class="empty">No methods are defined for this object.</p>
+        </li>
+    {{/if}}
+</ul>

@@ -1,0 +1,160 @@
+//=================================================================================================
+//
+// home.less -- CSS for the home screens
+//
+
+#letscode-home-panel {
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	background: #fff;
+    @frame-width: 860px;
+    @content-top: 180px;
+
+    #top-banner {
+        position: absolute;
+        top: 0; left: -31px;
+    }
+
+    #centre-frame {
+        position: absolute;
+        float: left;
+        left: 50%;
+        width: @frame-width;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+
+        #centre-panel {
+            position: relative;
+            float: left;
+            left: -50%;
+            width: @frame-width;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+
+            #diamond-box-frame {
+                position: absolute;
+                top: @content-top + 60px;
+
+                > div {
+                    background: @col-ui-blue;
+                    border-radius: 60px;
+                    width: 300px;
+                    height: 300px;
+                    left: -150px;
+                    .rotate(45deg);
+
+                    p {
+                        position: absolute;
+                        .rotate(-45deg);
+                        text-align: center;
+                        color: white;
+                        left: 20px; top: 22px;
+                        font-size: 3em;
+
+                        sup {
+                            font-size: 0.3em;
+                            position: relative;
+                            top: -5px;
+                        }
+
+                    }
+                }
+            }
+
+            #desc-panel, .lesson-panel {
+                position: absolute;
+                right: 0;
+                top: @content-top;
+                &#desc-panel {
+                    width: 450px;
+                }
+                &.lesson-panel {
+                    width: 100%;
+					display: none;
+                }
+                margin: 0;
+                padding: 0;
+                color: black;
+                font-size: 1.3em;
+
+                h1 {
+                    padding: 0;
+                    margin: 0;
+                    color: @col-ui-green;
+                    font-size: 2em;
+                    font-weight: bold;
+                }
+
+                .home-browser-info {
+                    margin-top: 85px;
+                    font-size: 0.8em;
+                    color: @col-ui-dkgrey;
+                    a {
+                        color: darken(@col-ui-blue, 30%);
+                        font-weight: bold;
+                    }
+                }
+
+                .copyright {
+                    font-size: 0.7em;
+                    color: #4D4D4D;
+                }
+
+                .option-menu {
+                    margin: 0;
+                    padding: 0;
+
+                    li {
+                        list-style: none;
+                        margin: 20px 0;
+                        padding: 5px;
+                        .transform(skew(-3deg, -2deg));
+
+                        a {
+                            background: @col-ui-orange;
+                            color: white;
+                            padding: 10px;
+
+                            &:hover {
+                                background: lighten(@col-ui-orange, 10%);
+                            }
+                        }
+
+                        &.back {
+                            float: left;
+                            a {
+                                background: @col-ui-ltgrey;
+                                padding: 5px;
+                            }
+                        }
+                        &.go {
+                            float: right;
+                            a {
+                                font-weight:bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #ft-logo {
+        position: fixed;
+        top: 670px;
+        right: 30px;
+    }
+
+    #bottom-banner {
+        position: fixed;
+        top: 700px;
+        width: 100%;
+        height: 85px;
+    }
+}
+

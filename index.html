@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+	<head>
+        <meta charset="utf-8">
+		<title>Let's Code!</title>
+		<link rel="stylesheet" href="css/global.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+		<link rel="icon" type="image/png" href="img/icons/favicon-16x16.png"/>
+		<link rel="apple-touch-icon" href="img/icons/iPhone-57x57.png"/>
+		<link rel="apple-touch-icon" href="img/icons/iPhone-114x114.png" sizes="114x114"/>
+		<link rel="apple-touch-icon" href="img/icons/iPad-72x72.png" sizes="72x72"/>
+		<link rel="apple-touch-icon" href="img/icons/iPad-144x144.png" sizes="144x144"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+		<meta name="format-detection" content="telephone=no"/>
+        <!-- For development, change main.built to main -->
+        <script data-main="js/main.built" src="js/lib/require/require.min.js"></script>
+	</head>
+	<body>
+		<div id="letscode-home-panel">
+			<div id="toolbar-home" class="toolbar">
+                <a href="#" id="tb-fullscreen-home" class="fullscreen" href="#"></a>
+                <a href="#" id="tb-help-home" class="help">Info</a>
+			</div>
+			<div id="centre-frame">
+				<div id="centre-panel">
+					<div id="home-intro">
+						<img id="top-banner" src="img/home-graphic-top.png"/>
+						<div id="diamond-box-frame">
+							<div>
+								<p class="welcome">Welcome<br/>to<br/><em>Let's Code!</em> <sup>alpha</sup></p>
+							</div>
+						</div>
+						<div id="desc-panel">
+							<h1>Programming is fun!</h1>
+							<p><em>Let's Code!</em> is a prototype from Pearson Future Technologies to encourage kids to learn more about programming and help them get started in creating their own web applications.</p>
+                            <p>Follow the introductory lessons below to get an idea of how <em>Let's Code!</em> works...</p>
+							<ul class="option-menu">
+								<li>
+									<a href="#lesson1" data-tutorialnumber="0">Lesson 1</a>
+								</li>
+								<li>
+									<a href="#lesson2" data-tutorialnumber="1">Lesson 2</a>
+								</li>
+							</ul>
+                            <p class="home-browser-info">Currently best with Chrome, Safari or Firefox. <a href="#">(Tell me more)</a></p>
+                            <p class="copyright">&copy; 2013 Pearson plc</p>
+						</div>
+					</div>
+					<div class="lesson-panel" id="lesson-panel-1">
+						<h1>Lesson 1</h1>
+						<h2>Introduction to <em>Let's Code!</em></h2>
+						<p>This lesson will show you the basics of how to get started with <em>Let's Code!</em>.</p>
+						<ul class="option-menu">
+							<li class="back">
+								<a href="#">Back</a>
+							</li>
+							<li class="go">
+								<a href="#" data-tutorialnumber="0">Start!</a>
+							</li>
+						</ul>
+					</div>
+					<div class="lesson-panel" id="lesson-panel-2">
+						<h1>Lesson 2</h1>
+						<h2>Adding and editing objects</h2>
+						<p>The second lesson shows you how to add a new object to your app, and connect objects together to make an interactive game.</p>
+						<ul class="option-menu">
+							<li class="back">
+								<a href="#">Back</a>
+							</li>
+							<li class="go">
+								<a href="#" data-tutorialnumber="1">Start!</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<img id="bottom-banner" src="img/home-graphic-bottom.png"/>
+            <div id="help-letscode-home-panel" class="help-panel" style="display: none;">
+                <div class="help-frame">
+                    <h1>Help<a href="#" class="help-close">x</a></h1>
+                    <div>
+                        <div class="home-help-intro">
+                            <h3>Welcome to <em>Let's Code!</em></h3>
+                            <p><em>Let's Code!</em> is a simple web-based prototype, and as such doesn't have a full set of features yet.</p>
+                            <p>The idea is to give you an understanding of the concept, and what a final product might be able to do.</p>
+                            <p>As such, the lessons form the main part of the experience right now, but later on you'll be able to:</p>
+                            <ul>
+                                <li>Create your own projects</li>
+                                <li>Save your progress online as you go</li>
+                                <li>Share your work and collaborate with others</li>
+                                <li>Create your own objects and object libraries</li>
+                                <li>Publish your work so that it can be run on computers and tablets</li>
+                                <li>Learn by going through more lessons and exercises</li>
+                            </ul>
+                         </div>
+                        <div class="browser-info">
+                            <h3><em>Let's Code!</em> currently works best with Chrome, Safari or Firefox.</h3>
+                            <p><em>Let's Code!</em> is a prototype developed in a short timeframe, so unfortunately we have not yet had time to test it fully in more browsers. Plus, we wanted to explore new HTML and CSS features.</p>
+                            <p>Right now, it is unlikely to work in Internet Explorer or older versions of any browsers.</p>
+                        </div>
+                        <div class="open-source">
+                            <h3>Source Code</h3>
+                            <p>Want to check out the source? You can find the GitHub repository here:</p>
+                            <p><a href="https://github.com/Pearson-FutureTech/LetsCode">https://github.com/Pearson-FutureTech/LetsCode</a></p>
+                            <p>Please see the README for more information.</p>
+                        </div>
+                        <div class="privacy-policy">
+                            <h3>Privacy and terms</h3>
+                            <p><em>Let's Code!</em> does not collect any user data and it does not use cookies.</p>
+                            <p>It's hosted on a third-party platform, GitHub Pages, so please see their own <a href="https://help.github.com/articles/github-terms-of-service">terms of service</a>.</p>
+                        </div>
+                        <div class="feedback">
+                            <h3>Feedback</h3>
+                            <p>If you have comments, questions or suggestions, you can <a href="mailto:future_tech@pearson.com">email us</a>.</p>
+                            <p>Thanks!</p>
+                            <p>The <em>Let's Code!</em> team at Future Technologies, Pearson</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div id="letscode">
+			<div id="toolbar" class="toolbar">
+				<a href="#" id="tb-projname" href="#"></a>
+                <a href="#" id="tb-fullscreen" class="fullscreen" href="#"></a>
+                <a href="#" id="tb-help" class="help">Help</a>
+				<a href="#" class="ui-button" id="tb-close">Close</a>
+				<a href="#" class="ui-button" id="tb-publish">Publish</a>
+				<a href="#" class="ui-button disabled" id="tb-redo">Redo</a>
+				<a href="#" class="ui-button disabled" id="tb-undo">Undo</a>
+				<div id="tb-editpreview">
+					<a href="#" class="ui-button group-right deselected" id="btn-preview">Preview</a>
+					<a href="#" class="ui-button group-left" id="btn-edit">Edit</a>
+				</div>
+			</div>
+			<div id="lessonpanel" class="tutorial-component">
+				<a id="lessdesc" class="tutorial-description"></a>
+				<a href="#" class="close-button">x</a>
+			</div>
+			<div id="stage-container">
+				<div id="stage"></div>
+			</div>
+			<div id="editpanel">
+				<div id="objselpanel">
+					<div class="ui-button group-left" id="btn-selobject">
+						<select name="sel-object">
+						</select>
+					</div>
+					<a class="ui-button group-right" id="btn-addobject">+</a>
+				</div>
+				<div id="viewselpanel">
+					<a href="#" class="ui-button group-right deselected" id="btn-viewcode">Code  </a>
+					<a href="#" class="ui-button group-left" id="btn-viewvisual">Visual</a>
+					<a href="#" class="ui-button deselected disabled" id="btn-debug">Dbg</a>
+				</div>
+				<a href="#" class="ui-tab" id="tab-methods">Methods</a>
+				<a href="#" class="ui-tab selected" id="tab-properties">Properties</a>
+				<a href="#" class="ui-tab" id="tab-events">Events</a>
+				<div id="methodlistpanel" class="side-panel" data-tab="tab-methods"></div>
+				<div id="eventlistpanel" class="side-panel" data-tab="tab-events"></div>
+				<div id="detailspanel" data-tab="tab-properties"></div>
+			</div>
+			<ul id="tutorial-steps" class="tutorial-component"></ul>
+            <div id="publish-placeholder">
+                <div id="publish-confirm" class="ui-popup arrow-top" style="display:none;">
+                    <h1>Sorry, publishing is not ready yet!</h1>
+                    <p>
+                        This will be the place to share your app with others, but it is not part of the prototype
+                        right now.
+                    </p>
+                    <p>In the meantime, here is an <a class="link" href="#published/myapp" target="_blank">example published app</a>.</p>
+                    <p>
+                        <a id="publish-cancel" class="ui-button deselected" href="#">OK</a>
+                    </p>
+                </div>
+            </div>
+            <div id="help-letscode" class="help-panel" style="display: none;">
+                <div class="help-frame">
+                    <h1>Help<a href="#" class="help-close">x</a></h1>
+                    <div>
+                        <h1>Glossary of terms</h1>
+                        <term>App</term>
+                        <p>Short for application: this is the web-based game that you are creating.</p>
+                        <term>Project</term>
+                        <p>The collection of objects, images and code that make up your app.</p>
+                        <term>Stage</term>
+                        <p>The area on the screen where the contents of the app are displayed.</p>
+                        <term>Edit Mode</term>
+                        <p>Select this mode to add and select objects to your application.</p>
+                        <term>Preview mode</term>
+                        <p>Select this mode to see how your app will run when it is published.</p>
+                        <term>Publish</term>
+                        <p>When your app is ready, you can publish it, so that others can see it on their web browsers.</p>
+                        <term>Object</term>
+                        <p>One of the items that can be added to the stage, and edited.</p>
+                        <term>Property</term>
+                        <p>Each object has a number of properties, each of which has a name and a specific value.</p>
+                        <term>Property Name</term>
+                        <p>Each property has a unique name that describes what it does, such as id, left, backgroundImage, etc.</p>
+                        <term>Property Value</term>
+                        <p>The value of each property is the text or number value that defines that property.</p>
+                        <term>Method</term>
+                        <p>Objects can define methods, which are like actions that other objects can tell this object to do,
+                            such as telling the athlete to run or jump.</p>
+                        <term>Event</term>
+                        <p>Events are used by objects to tell other objects when something happens, such as when the athlete
+                            lands after a jump, the scoreboard can be updated.</p>
+                        <term>Event handler</term>
+                        <p>An event handler is a method from another object that is attached to an object's event, for
+                            example the athlete's whenJumpFinishes event handler is the update method of MyScoreboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- Object library popup, hidden by default -->
+		<div id="library"></div>
+	</body>
+	
+</html>

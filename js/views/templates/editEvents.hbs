@@ -1,0 +1,11 @@
+{{ event.name }}
+{{#if event.listeners }}
+	<ul>
+		{{#each event.listeners }}
+			<li>{{ instance }}.{{ method }}<a href="#" class="close-button" data-instance="{{instance}}" data-method="{{method}}"></a></li>
+		{{/each }}
+	</ul>
+{{/if }}
+{{# if event.comment }}
+	<div class="comment">{{ event.comment }}</div>
+{{/if}}

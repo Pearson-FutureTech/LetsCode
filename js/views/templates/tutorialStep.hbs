@@ -1,0 +1,19 @@
+<li class="{{#if stepClass}}step-{{ stepClass }}{{/if}}{{#if arrowDirection}} arrow-{{arrowDirection}}{{/if}}"{{#if description}} data-description="{{description}}"{{/if}}>
+	<div class="content"{{# if width}} style="width:{{width}}"{{/ if}}>
+		{{{ contents }}}
+		{{#if continue}}
+			<button class="continue">Continue</button>
+		{{/if}}
+	</div>
+	{{#if substeps}}
+		<ul class="substeps">
+			{{#each substeps}}
+				<li class="substep {{#if stepClass}}step-{{ stepClass }}{{/if}}{{# if arrowDirection}} arrow-{{arrowDirection}}{{/ if}}">
+					<div class="content"{{# if width}} style="width:{{width}}"{{/ if}}>
+						{{{ contents }}}
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	{{/if}}
+</li>

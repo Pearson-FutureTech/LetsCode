@@ -1,0 +1,15 @@
+<p>Events represent things that happen, such as the click of button. Events can be linked to methods to make them trigger things.</p>
+<ul class="eventlist">
+    {{#if events.length}}
+        {{#each events}}
+        <li>
+           <p><a href="#">{{name}}</a>{{comment}}</p>
+        <li>
+        {{/each}}
+    {{else}}
+        <li>
+            <p class="empty">This object does not have any events defined.</p>
+        </li>
+    {{/if}}
+</ul>
+

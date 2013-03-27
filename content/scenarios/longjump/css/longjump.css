@@ -1,0 +1,22 @@
+[data-object=Scoreboard] ol{position:relative;top:40px;list-style-type:none;color:#333;padding:0;}[data-object=Scoreboard] ol li{height:22px;line-height:22px;padding-left:42px;}
+#tutorial-steps li.step-undoredo-buttons{margin-left:63px;}
+#tutorial-steps li.step-close-button{margin-left:15px;}
+#tutorial-steps li.step-publish-button{margin-left:-17px;}#tutorial-steps li.step-publish-button div.content:before{left:70%;}
+#tutorial-steps li.step-publish-button div.content:after{left:70%;}
+#tutorial-steps li.step-help-button{margin-left:-2px;margin-top:5px;}#tutorial-steps li.step-help-button div.content:before{left:70%;}
+#tutorial-steps li.step-help-button div.content:after{left:70%;}
+#tutorial-steps li.step-add-new-object{margin-left:14px;}
+#tutorial-steps li.step-select-new-button .content{min-height:35px;}
+#tutorial-steps li.step-drag-button-here{margin-left:-300px;margin-top:-80px;}#tutorial-steps li.step-drag-button-here .content{min-height:35px;}
+#tutorial-steps li.step-select-athlete .content{min-height:35px;}
+#tutorial-steps li.step-object-methods{margin-left:85px;}#tutorial-steps li.step-object-methods>div.content:before{left:25%;}
+#tutorial-steps li.step-object-methods>div.content:after{left:25%;}
+#tutorial-steps li.step-object-methods .substep{margin-top:20px;}
+@media screen and (max-width:1140px){#tutorial-steps li.step-object-methods{margin-left:134px;}#tutorial-steps li.step-object-methods>div.content:before{left:18%;} #tutorial-steps li.step-object-methods>div.content:after{left:18%;}}
+#tutorial-steps li.step-see-button-events{margin-top:50px;}#tutorial-steps li.step-see-button-events div.content:before{top:28%;}
+#tutorial-steps li.step-see-button-events div.content:after{top:28%;}
+[data-object=Athlete] .edit .comment{width:190px;}
+[data-object=Scoreboard] .edit .comment{width:171px;}
+[data-object=Sandpit] .edit .comment{width:426px;}
+[data-object=Button] .edit .comment{width:100px;}
+[data-object=NumberBox] .edit .comment{width:150px;}

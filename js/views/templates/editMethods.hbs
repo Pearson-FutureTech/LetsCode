@@ -1,0 +1,11 @@
+{{ method.name }}
+{{# if method.references }}
+	<ul>
+		{{# method.references }}
+			<li>{{ objectWithEventName }}.{{ event }}</li>
+		{{/ method.references }}
+	</ul>
+{{/ if }}
+{{# if method.comment }}
+	<div class="comment">{{ method.comment }}</div>
+{{/if}}
