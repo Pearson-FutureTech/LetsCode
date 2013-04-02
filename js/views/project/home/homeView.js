@@ -7,12 +7,17 @@ define([
 	'Underscore',
 	'Backbone',
 	'views/project/home/homeHelpView',
-	'views/project/home/homeToolbarView'
-], function($, _, Backbone, HomeHelpView, HomeToolbarView){
+	'views/project/home/homeToolbarView',
+	'util/WindowUtils'
+], function($, _, Backbone, HomeHelpView, HomeToolbarView, WindowUtils){
 
 	var HomeView = Backbone.View.extend({
 
 		el: "#letscode-home-panel",
+
+		events: {
+			'click #desc-panel .fullscreen': 'toggleFullScreen'
+		},
 
 		views: [],
 
@@ -53,7 +58,12 @@ define([
 				this.showHome();
 			}, this);
 
+			$(window).bind('resize.app', _.bind(this.onResize, this));
+
 			this.createSubViews();
+
+			// Call explicitly the first time
+			this.onResize();
 
 		},
 
@@ -82,6 +92,25 @@ define([
 			$('.lesson-panel', this.$el).hide();
 			$('#lesson-panel-'+(tutorialNumber+1), this.$el).show();
 			this.$el.show();
+		},
+
+		toggleFullScreen: function() {
+			WindowUtils.toggleFullScreen();
+			return false;
+		},
+
+		onResize: function() {
+
+			var width = $(window).width();
+
+			var height = $(window).height();
+
+			if( width < 1024 || height < 900 ) {
+				$('.home-screensize-info', this.$el).show();
+			} else {
+				$('.home-screensize-info', this.$el).hide();
+			}
+
 		}
 
 	});

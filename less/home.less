@@ -90,14 +90,25 @@
                     font-weight: bold;
                 }
 
-                .home-browser-info {
-                    margin-top: 85px;
+                .home-browser-info,
+                .home-screensize-info {
+                    clear: left;
                     font-size: 0.8em;
                     color: @col-ui-dkgrey;
                     a {
                         color: darken(@col-ui-blue, 30%);
                         font-weight: bold;
                     }
+                }
+
+                .home-browser-info {
+                    padding-top: 45px;
+                }
+
+                .home-screensize-info {
+                    margin-top: 1em;
+                    display: none;
+                    color: @col-ui-orange;
                 }
 
                 .copyright {
@@ -111,8 +122,9 @@
 
                     li {
                         list-style: none;
-                        margin: 20px 0;
+                        margin: 20px 20px 20px 0;
                         padding: 5px;
+                        float: left;
                         .transform(skew(-3deg, -2deg));
 
                         a {
