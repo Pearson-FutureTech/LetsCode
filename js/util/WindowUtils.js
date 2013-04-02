@@ -14,7 +14,7 @@ define(function(){
 			if (document.webkitIsFullScreen) {
 				document.webkitCancelFullScreen();
 			} else {
-				document.getElementsByTagName("body")[0].webkitRequestFullScreen();
+				document.getElementsByTagName("body")[0].webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
 			}
 		}
 		else if (typeof document.mozFullScreen != "undefined") {
