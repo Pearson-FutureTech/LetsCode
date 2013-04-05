@@ -6,16 +6,16 @@ define([
 	'jQuery',
 	'Underscore',
 	'Backbone',
+	'app',
 	'collections/tutorial',
 	'views/project/app/tutorialLessonPanelView',
 	'hbs!views/templates/tutorialStep'
-], function($, _, Backbone, TutorialCollection, TutorialLessonPanelView, TutorialStepTemplate){
+], function($, _, Backbone, app, TutorialCollection, TutorialLessonPanelView, TutorialStepTemplate){
 
 	var tutorialView = Backbone.View.extend({
 
 		currentStepIndex: 0,
 		tutorial: null,
-		tutorialNumber: 0,
 
 		dispatcher: _.clone(Backbone.Events),
 
@@ -29,45 +29,16 @@ define([
 
 		initialize: function(){
 
-			this.global_dispatcher.bind('tutorial:previous', function() {
-				this.previousStep();
-			}, this);
-
-			this.global_dispatcher.bind('tutorial:next', function() {
-				this.nextStep();
-			}, this);
-
-			this.global_dispatcher.bind('tutorial:close', function() {
-				this.global_dispatcher.trigger('app:startFreePlay', this.tutorial.get('project'));
-				this.close();
-			}, this);
-
-			this.global_dispatcher.bind('object:onClick', function(obj) {
-				this.handleObjectClick(obj);
-			}, this);
-
-			this.global_dispatcher.bind('object:updated', function(obj) {
-				this.handleObjectUpdated(obj);
-			}, this);
-
-			this.global_dispatcher.bind('nav:showTutorial', function(tutorialNumber) {
-				this.tutorialNumber = tutorialNumber;
-				this.refresh();
-			}, this);
-
-			this.global_dispatcher.bind('nav:tutorialIntro', function() {
-				this.global_dispatcher.trigger('scenario:reset');
-			}, this);
-
-			this.global_dispatcher.bind('tutorial:onStep', function(step) {
-				this.updateOnStepChange(step);
-			}, this);
-
-			this.global_dispatcher.bind('edit:panelResized', function() {
-				this.stageMovedHandler();
-			}, this);
+			this.global_dispatcher.bind('tutorial:previous', this.previousStep, this);
+			this.global_dispatcher.bind('tutorial:next', this.nextStep, this);
+			this.global_dispatcher.bind('object:onClick', this.handleObjectClick, this);
+			this.global_dispatcher.bind('object:updated', this.handleObjectUpdated, this);
+			this.global_dispatcher.bind('tutorial:onStep', this.updateOnStepChange, this);
+			this.global_dispatcher.bind('edit:panelResized', this.stageMovedHandler, this);
 
 			this.createSubViews();
+
+			$(window).bind('resize', {context: this}, this.onWindowResize);
 
 		},
 
@@ -101,12 +72,15 @@ define([
 			} else {
 
 				// Finished this lesson
-				if( this.model.tutorials.models.length > this.tutorialNumber + 1 ) {
+				if( this.model.tutorials.models.length > this.model.get('tutorialNumber') + 1 ) {
+
 					// There's another lesson - proceed to the next one
-					this.global_dispatcher.trigger('nav:tutorialIntro', this.tutorialNumber + 1);
+					app.router.navigate('/lesson/' + (this.model.get('tutorialNumber') + 2), {trigger:true} );
+
 				} else {
+
 					// Finished last lesson
-					this.global_dispatcher.trigger('tutorial:close');
+					app.router.navigate('/scenario/' + app.router.scenarioId, {trigger: true} );
 				}
 
 			}
@@ -128,30 +102,27 @@ define([
 
 			this.views.tutorialLessonPanelView.render();
 
-		},
-
-		refresh: function() {
-
-			// Update position on window resize
-			$(window).unbind('resize', this.onWindowResize)
-			$(window).bind('resize', {context: this}, this.onWindowResize);
-
-			this.tutorial = this.model.tutorials.models[this.tutorialNumber];
-			this.global_dispatcher.trigger('tutorial:tutorialSet', this.tutorial);
-
 			this.$el.empty();
 
-			var that = this;
+			if( this.model.get('tutorialNumber') != null ) {
 
-			_.each(this.tutorial.get('steps'), function(step) {
-				var stepEl = TutorialStepTemplate(step);
-				that.$el.append(stepEl);
-			});
+				this.tutorial = this.model.tutorials.models[this.model.get('tutorialNumber')];
+				this.global_dispatcher.trigger('tutorial:tutorialSet', this.tutorial);
 
-			this.$el.show();
+				var that = this;
 
-			this.currentStepIndex = 0;
-			this.global_dispatcher.trigger('tutorial:onStep', this.tutorial.get('steps')[this.currentStepIndex]);
+				_.each(this.tutorial.get('steps'), function(step) {
+					var stepEl = TutorialStepTemplate(step);
+					that.$el.append(stepEl);
+				});
+
+				this.$el.show();
+
+				this.currentStepIndex = 0;
+
+				this.global_dispatcher.trigger('tutorial:onStep', this.tutorial.get('steps')[0]);
+
+			}
 
 		},
 
@@ -164,7 +135,7 @@ define([
 			// Change wording of 'Continue' button if last step
 			if( this.currentStepIndex >= this.tutorial.get('steps').length - 1 ) {
 
-				if( this.model.tutorials.models.length > this.tutorialNumber + 1 ) {
+				if( this.model.tutorials.models.length > this.model.get('tutorialNumber') + 1 ) {
 					$('.continue', tutorialStepEl).html('Next lesson');
 				} else {
 					$('.continue', tutorialStepEl).html('Finish');

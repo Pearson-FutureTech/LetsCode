@@ -40,15 +40,12 @@ require.config({
 });
 
 require([
-
-	// Load our app module and pass it to our definition function
-	'app',
-
-	// Library dependencies
 	'jQuery',
 	'Underscore',
-	'Backbone'
-], function(App, $, _, Backbone){
+	'Backbone',
+	'app',
+	'router'
+], function($, _, Backbone, app, Router){
 
 	// Extending Backbone to give every Collection, Model, View and Router a
 	// global_dispatcher for easily pub/sub'ing events across the application
@@ -78,7 +75,9 @@ require([
 		
 	})();
 
+	app.router = new Router();
+
 	// Now, let's fire up the app!
-	App.initialize();
+	app.initialize();
 	
 });

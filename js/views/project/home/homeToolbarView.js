@@ -14,14 +14,19 @@ define([
 		el: "#toolbar-home",
 
 		events: {
+			'click #tb-help-home': 'homeHelpClicked',
 			'click #tb-fullscreen-home': 'toggleFullScreen'
+		},
+
+		homeHelpClicked: function() {
+			this.global_dispatcher.trigger('home:helpClicked');
 		},
 
 		toggleFullScreen: function() {
 			WindowUtils.toggleFullScreen();
 			return false;
 		}
-		
+
 	});
 	
 	return ToolbarHomeView;

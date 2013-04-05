@@ -5,22 +5,19 @@
 define([
 	'jQuery',
 	'Underscore',
-	'Backbone',
-	'router'
-], function($, _, Backbone, Router){
+	'Backbone'
+], function($, _, Backbone) {
 	
-	var app = new Object({
+	var app = {
 	
-		/*
-		 * Probably need to handle loading and refresh of app data a bit better
-		 */
-		initialize: function(){
-			Router.initialize({app: this});
+		initialize: function() {
+
 			// This starts our application by routing the initial URL
 			Backbone.history.start();
+
 		}
 		
-	});
+	};
 	
 	return app;
 

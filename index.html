@@ -14,10 +14,10 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 		<meta name="format-detection" content="telephone=no"/>
         <!-- For development, change main.built to main -->
-        <script data-main="js/main.built" src="js/lib/require/require.min.js"></script>
+        <script data-main="js/main" src="js/lib/require/require.min.js"></script>
 	</head>
 	<body>
-		<div id="letscode-home-panel">
+		<div id="letscode-home-panel" class="page">
 			<div id="toolbar-home" class="toolbar">
                 <a href="#" id="tb-fullscreen-home" class="fullscreen" href="#"></a>
                 <a href="#" id="tb-help-home" class="help">Info</a>
@@ -32,10 +32,10 @@
                             <p>Follow the introductory lessons below to get an idea of how <em>Let's Code!</em> works...</p>
 							<ul class="option-menu">
 								<li>
-									<a href="#lesson1" data-tutorialnumber="0">Lesson 1</a>
+									<a href="#lesson/1">Lesson 1</a>
 								</li>
 								<li>
-									<a href="#lesson2" data-tutorialnumber="1">Lesson 2</a>
+									<a href="#lesson/2">Lesson 2</a>
 								</li>
 							</ul>
                             <p class="home-browser-info">Currently best with Chrome, Safari or Firefox. <a href="#">(Tell me more)</a></p>
@@ -57,7 +57,7 @@
 								<a href="#">Back</a>
 							</li>
 							<li class="go">
-								<a href="#" data-tutorialnumber="0">Start!</a>
+								<a href="#scenario/longjump/lesson/1">Start!</a>
 							</li>
 						</ul>
 					</div>
@@ -70,14 +70,14 @@
 								<a href="#">Back</a>
 							</li>
 							<li class="go">
-								<a href="#" data-tutorialnumber="1">Start!</a>
+								<a href="#scenario/longjump/lesson/2">Start!</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<img id="bottom-banner" src="img/home-graphic-bottom.png"/>
-            <div id="help-letscode-home-panel" class="help-panel" style="display: none;">
+            <div id="help-letscode-home-panel" class="help-panel">
                 <div class="help-frame">
                     <h1>Help<a href="#" class="help-close">x</a></h1>
                     <div>
@@ -121,7 +121,7 @@
                 </div>
             </div>
 		</div>
-		<div id="letscode">
+		<div id="letscode" class="page">
 			<div id="toolbar" class="toolbar">
 				<a href="#" id="tb-projname" href="#"></a>
                 <a href="#" id="tb-fullscreen" class="fullscreen" href="#"></a>

@@ -16,47 +16,13 @@ define([
 		el: "#letscode-home-panel",
 
 		events: {
-			'click #desc-panel .fullscreen': 'toggleFullScreen'
+			'click #desc-panel .fullscreen': 'toggleFullScreen',
+			'click .home-browser-info a': 'homeBrowserInfoClicked'
 		},
 
 		views: [],
 
 		initialize: function() {
-
-			$('#home-intro .option-menu a', this.$el).bind('click', {context: this}, function(event) {
-				event.data.context.global_dispatcher.trigger('nav:tutorialIntro', $(this).data('tutorialnumber'));
-				return false;
-			});
-
-			$('.lesson-panel .go a', this.$el).bind('click', {context: this}, function(event) {
-				event.data.context.global_dispatcher.trigger('nav:showTutorial', $(this).data('tutorialnumber'));
-				return false;
-			});
-
-			$('.lesson-panel .back a', this.$el).bind('click', {context: this}, function(event) {
-				event.data.context.global_dispatcher.trigger('nav:showHome');
-				return false;
-			});
-
-			$('#tb-help-home', this.$el).bind('click', {context: this}, function(event) {
-				event.data.context.global_dispatcher.trigger('home:helpClicked');
-			});
-
-            $('.home-browser-info a', this.$el).bind('click', {context: this}, function(event) {
-                event.data.context.global_dispatcher.trigger('home:helpClicked');
-            });
-
-			this.global_dispatcher.bind('nav:tutorialIntro', function(tutorialNumber) {
-				this.showTutorialIntro(tutorialNumber);
-			}, this);
-
-			this.global_dispatcher.bind('nav:showTutorial', function() {
-				this.$el.hide();
-			}, this);
-
-			this.global_dispatcher.bind('nav:showHome', function() {
-				this.showHome();
-			}, this);
 
 			$(window).bind('resize.app', _.bind(this.onResize, this));
 
@@ -79,19 +45,18 @@ define([
 			this.views.homeHelpView.render();
 			this.views.homeToolbarView.render();
 
-		},
-
-		showHome: function() {
 			$('#home-intro', this.$el).show();
 			$('.lesson-panel', this.$el).hide();
+
+			$('.page').hide();
 			this.$el.show();
+
 		},
 
-		showTutorialIntro: function(tutorialNumber) {
-			$('#home-intro', this.$el).hide();
-			$('.lesson-panel', this.$el).hide();
-			$('#lesson-panel-'+(tutorialNumber+1), this.$el).show();
-			this.$el.show();
+		homeBrowserInfoClicked: function() {
+
+			this.global_dispatcher.trigger('home:helpClicked');
+
 		},
 
 		toggleFullScreen: function() {

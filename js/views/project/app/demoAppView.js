@@ -25,7 +25,7 @@ define([
 
 			$('#stage', this.$el).addClass('tablet-demo');
 
-			$('#letscode-home-panel').hide();
+			$('.page').hide();
 			this.$el.show();
 
 		}

@@ -22,19 +22,6 @@ define([
 
 		initialize: function() {
 
-			this.global_dispatcher.bind('nav:showTutorial', function(tutorialNumber) {
-				this.$el.show();
-			}, this);
-
-			this.global_dispatcher.bind('nav:showHome', function() {
-				this.global_dispatcher.trigger('scenario:reset');
-				this.$el.hide();
-			}, this);
-
-			this.global_dispatcher.bind('nav:tutorialIntro', function(tutorialNumber) {
-				this.$el.hide();
-			}, this);
-
 			this.createSubViews();
 
 		},
@@ -61,18 +48,14 @@ define([
 			this.views.editPanelView.render();
 			this.views.stageView.render();
 
+			$('.page').hide();
+			this.$el.show();
+
 			// XXX Yucky - select the Stage by default - hardcoded name - this should be defined as part of scenario...
 			var stageObj = _.find(this.model.scenarioObjectInstances.models, function(obj) {
 				if( obj.get('name') == 'myStage' ) return obj;
 			});
 			this.global_dispatcher.trigger('object:onClick', stageObj);
-
-		},
-
-		refresh: function() {
-
-			this.views.tutorialView.refresh();
-			this.views.stageView.refresh();
 
 		}
 
