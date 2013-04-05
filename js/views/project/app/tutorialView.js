@@ -87,24 +87,11 @@ define([
 
 		},
 
-		close: function() {
-
-			this.$el.hide();
-
-			$('.highlight').removeClass('highlight');
-			$('.fade').removeClass('fade');
-
-			this.currentStepIndex = 0;
-
-		},
-
-		render: function(){
-
-			this.views.tutorialLessonPanelView.render();
+		render: function() {
 
 			this.$el.empty();
 
-			if( this.model.get('tutorialNumber') != null ) {
+			if( this.model.get('tutorialNumber') != -1 ) {
 
 				this.tutorial = this.model.tutorials.models[this.model.get('tutorialNumber')];
 				this.global_dispatcher.trigger('tutorial:tutorialSet', this.tutorial);
@@ -122,7 +109,23 @@ define([
 
 				this.global_dispatcher.trigger('tutorial:onStep', this.tutorial.get('steps')[0]);
 
+			} else {
+
+				// No tutorial set so don't show
+
+				this.tutorial = null;
+
+				this.$el.hide();
+
+				$('.highlight').removeClass('highlight');
+				$('.fade').removeClass('fade');
+
+				this.currentStepIndex = 0;
+
 			}
+
+			this.views.tutorialLessonPanelView.model.tutorial = this.tutorial;
+			this.views.tutorialLessonPanelView.render();
 
 		},
 

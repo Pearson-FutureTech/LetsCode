@@ -38,6 +38,7 @@ define([
 
 		render: function() {
 
+			this.views.toolbarAppView.model = this.model;
 			this.views.tutorialView.model = this.model;
 			this.views.editPanelView.model = this.model;
 			this.views.stageView.model = this.model;

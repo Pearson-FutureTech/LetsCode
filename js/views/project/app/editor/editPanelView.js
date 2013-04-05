@@ -17,12 +17,17 @@ define([
 
 		el: "#editpanel",
 
+		events: {
+			'click #btn-debug': 'ignoreClick'
+		},
+
 		views: [],
 
 		initialize: function(){
 
 			 $('.ui-tab', this.$el).bind('click', {context: this}, function(event) {
 				 event.data.context.global_dispatcher.trigger('edit:chooseTab', this.id);
+				 event.preventDefault();
 			 });
 
 			$('#btn-viewcode', this.$el).bind('click', {context: this}, function(event) {
@@ -32,6 +37,8 @@ define([
 				$(this).removeClass('deselected');
 				$('#btn-viewvisual', this.$el).addClass('deselected');
 
+				event.preventDefault();
+
 			});
 
 			$('#btn-viewvisual', this.$el).bind('click', {context: this}, function(event) {
@@ -40,6 +47,8 @@ define([
 
 				$(this).removeClass('deselected');
 				$('#btn-viewcode', this.$el).addClass('deselected');
+
+				event.preventDefault();
 
 			});
 
@@ -109,6 +118,10 @@ define([
 			this.views.objectSelectorView.render();
 			this.views.propertyEditorView.render();
 
+		},
+
+		ignoreClick: function() {
+			return false;
 		}
 
 	});

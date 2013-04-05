@@ -35,10 +35,11 @@ define([
 		sceObjBuffer: new ScenarioObjects(),
 		sceObjInsBuffer: new ScenarioObjectInstances(),
 
-		// NB. It's currently hard-coded that this prototype is going to use
+		// XXX It's currently hard-coded that this prototype is going to use
 		// the long jump scenario. If you create your own scenario, you could
-		// change 'longjump' to your own scenario ID here
+		// change the ID and name here...
 		scenarioId : 'longjump',
+		scenarioName : 'Long Jump',
 
 		/*
 		 * Routes are set up to fire off to methods of the Router.
@@ -115,7 +116,7 @@ define([
 
 			// XXX Should use the given scenarioId...
 
-			var tutorialNumInt = parseInt(tutorialNumber) - 1;
+			var tutorialNumInt = tutorialNumber? parseInt(tutorialNumber) - 1 : -1;
 
 			if( this.scenario == null ) {
 

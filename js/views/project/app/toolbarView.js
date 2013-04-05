@@ -6,8 +6,10 @@ define([
 	'jQuery',
 	'Underscore',
 	'Backbone',
+	'app',
+	'hbs!views/templates/projectHeadline',
 	'util/WindowUtils'
-], function($, _, Backbone, WindowUtils){
+], function($, _, Backbone, app, ProjectHeadlineTemplate, WindowUtils){
 
 	var ToolbarView = Backbone.View.extend({
 
@@ -18,12 +20,10 @@ define([
 			'click #btn-preview': 'switchToPreviewMode',
 			'click #tb-publish': 'publishScenario',
 			'click #tb-help': 'helpClicked',
-			'click #tb-close': 'closeClicked',
+			'click #tb-undo': 'ignoreClick',
+			'click #tb-redo': 'ignoreClick',
 			'click #tb-fullscreen': 'toggleFullScreen'
 		},
-
-		headlineTemplate: _.template('<span class="project"><%= project %></span> - <span class="name"><%= name %></span>'),
-
 
 		initialize: function(){
 
@@ -37,44 +37,30 @@ define([
 				$('#btn-preview').addClass('deselected');
 			});
 
-			this.global_dispatcher.bind('tutorial:tutorialSet', function(tutorial) {
+			// Outside of the toolbar element, but logically belongs here for now
+			$('#publish-confirm').bind('click', this.closePublishPanel);
 
-				var headingEl = this.headlineTemplate({
-					project: tutorial.get('project'),
-					name: tutorial.get('name')
+        },
+
+		render: function() {
+
+			var tutorial = this.model.tutorials.models[this.model.get('tutorialNumber')];
+
+			var scenarioName = tutorial ? tutorial.get('project') : app.router.scenarioName;
+			var tutorialName = tutorial ? tutorial.get('name') : null;
+
+			if( tutorial ) {
+
+				var headingEl = ProjectHeadlineTemplate({
+					scenario: scenarioName,
+					tutorial: tutorialName
 				});
 
 				$('#tb-projname', this.$el).html(headingEl);
 
-			}, this);
+			}
 
-			this.global_dispatcher.bind('app:startFreePlay', function(project) {
-				$('#tb-projname', this.$el).html('<span class="project">'+project+'</span>')
-			}, this);
-
-			// These really belong in a separate view...
-
-            $("#publish-continue").click(function(){
-                $("#publish-confirm").hide();
-                $("#publish-inprogress").show();
-                window.setTimeout(function(){
-                    $("#publish-inprogress").hide();
-                    $("#publish-share").show();
-                }, 1500);
-            });
-
-            $("#publish-cancel").click(function(){
-                $("#publish-confirm").hide();
-            });
-
-            $("#publish-close").click(function(){
-                $("#publish-share").hide();
-            });
-
-            $("#publish-done").click(function(){
-                $("#publish-share").hide();
-            });
-        },
+		},
 
 		switchToEditMode: function() {
 			this.global_dispatcher.trigger('state:editMode');
@@ -96,14 +82,18 @@ define([
 			return false;
 		},
 
-		closeClicked: function() {
-			this.global_dispatcher.trigger('state:editMode');
-			this.global_dispatcher.trigger('nav:showHome');
+		closePublishPanel: function() {
+			$("#publish-confirm").hide();
+			return false;
+		},
+
+		ignoreClick: function() {
 			return false;
 		},
 
 		toggleFullScreen: function() {
 			WindowUtils.toggleFullScreen();
+			return false;
 		}
 
 	});
