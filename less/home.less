@@ -5,22 +5,16 @@
 
 #letscode-home-panel {
 
-	position: absolute;
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
 	z-index: 3;
 	background: #fff;
-    @frame-width: 860px;
+    overflow: hidden;
+    @frame-width: 768px; /* Max available is the minimum width on iPad (portrait) */
     @content-top: 180px;
 
-    #top-banner {
-        position: absolute;
-        top: 0; left: -31px;
-    }
-
     #centre-frame {
-        position: absolute;
-        float: left;
+        position: relative;
         left: 50%;
         width: @frame-width;
         height: 100%;
@@ -36,16 +30,22 @@
             padding: 0;
             margin: 0;
 
+            #top-banner {
+              position: relative;
+              left: -30px;
+            }
+
             #diamond-box-frame {
-                position: absolute;
-                top: @content-top + 60px;
+                position: relative;
+                width: 270px;
+                top: 120px;
+                left: 20px;
 
                 > div {
                     background: @col-ui-blue;
                     border-radius: 60px;
-                    width: 300px;
-                    height: 300px;
-                    left: -150px;
+                    width: 270px;
+                    height: 270px;
                     .rotate(45deg);
 
                     p {
@@ -53,7 +53,7 @@
                         .rotate(-45deg);
                         text-align: center;
                         color: white;
-                        left: 20px; top: 22px;
+                        top: 8px;
                         font-size: 3em;
 
                         sup {
@@ -67,14 +67,18 @@
             }
 
             #desc-panel, .lesson-panel {
-                position: absolute;
-                right: 0;
-                top: @content-top;
+
                 &#desc-panel {
-                    width: 450px;
+                    float: right;
+                    width: 410px;
+                    padding: 50px 10px 0 10px;
                 }
+
                 &.lesson-panel {
+                    position: relative;
+                    top: 180px;
                     width: 100%;
+                    min-height: 500px;
 					display: none;
                 }
                 margin: 0;
@@ -156,15 +160,7 @@
         }
     }
 
-    #ft-logo {
-        position: fixed;
-        top: 670px;
-        right: 30px;
-    }
-
     #bottom-banner {
-        position: fixed;
-        top: 700px;
         width: 100%;
         height: 85px;
     }
