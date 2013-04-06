@@ -108,8 +108,8 @@ define([
 
 		},
 
-		tabClick: function() {
-			this.global_dispatcher.trigger('edit:chooseTab', this.id);
+		tabClick: function(event) {
+			this.global_dispatcher.trigger('edit:chooseTab', event.target.id);
 			return false;
 		},
 
