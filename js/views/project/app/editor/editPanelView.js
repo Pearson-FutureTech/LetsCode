@@ -18,39 +18,15 @@ define([
 		el: "#editpanel",
 
 		events: {
+			'click .ui-tab': 'tabClick',
+			'click #btn-viewcode': 'viewCodeClick',
+			'click #btn-viewvisual': 'viewVisualClick',
 			'click #btn-debug': 'ignoreClick'
 		},
 
 		views: [],
 
 		initialize: function(){
-
-			 $('.ui-tab', this.$el).bind('click', {context: this}, function(event) {
-				 event.data.context.global_dispatcher.trigger('edit:chooseTab', this.id);
-				 event.preventDefault();
-			 });
-
-			$('#btn-viewcode', this.$el).bind('click', {context: this}, function(event) {
-
-				event.data.context.global_dispatcher.trigger('edit:viewCode');
-
-				$(this).removeClass('deselected');
-				$('#btn-viewvisual', this.$el).addClass('deselected');
-
-				event.preventDefault();
-
-			});
-
-			$('#btn-viewvisual', this.$el).bind('click', {context: this}, function(event) {
-
-				event.data.context.global_dispatcher.trigger('edit:viewVisual');
-
-				$(this).removeClass('deselected');
-				$('#btn-viewcode', this.$el).addClass('deselected');
-
-				event.preventDefault();
-
-			});
 
 			// Select Properties tab by default when object is clicked
 			this.global_dispatcher.bind('object:onClick', function() {
@@ -76,19 +52,11 @@ define([
 			});
 
 			this.global_dispatcher.bind('state:previewMode', function() {
-				var that = this;
-				this.$el.animate({height: '0px', padding: '0'}, 1000, function() {
-					that.global_dispatcher.trigger('edit:panelResized', 0);
-				});
-				this.global_dispatcher.trigger('edit:panelResizing', 0, 1000);
+				this.closePanel();
 			}, this);
 
 			this.global_dispatcher.bind('state:editMode', function() {
-				var that = this;
-				this.$el.animate({height: '280px', padding: '10px'}, 1000, function() {
-					that.global_dispatcher.trigger('edit:panelResized', 300);
-				});
-				this.global_dispatcher.trigger('edit:panelResizing', 300, 1000);
+				this.openPanel();
 			}, this);
 
 			this.createSubViews();
@@ -117,6 +85,55 @@ define([
 			this.views.objectLibraryView.render();
 			this.views.objectSelectorView.render();
 			this.views.propertyEditorView.render();
+
+		},
+
+		closePanel: function() {
+
+			var that = this;
+			this.$el.animate({height: '0px', padding: '0'}, 1000, function() {
+				that.global_dispatcher.trigger('edit:panelResized', 0);
+			});
+			this.global_dispatcher.trigger('edit:panelResizing', 0, 1000);
+
+		},
+
+		openPanel: function() {
+
+			var that = this;
+			this.$el.animate({height: '280px', padding: '10px'}, 1000, function() {
+				that.global_dispatcher.trigger('edit:panelResized', 300);
+			});
+			this.global_dispatcher.trigger('edit:panelResizing', 300, 1000);
+
+		},
+
+		tabClick: function() {
+			this.global_dispatcher.trigger('edit:chooseTab', this.id);
+			return false;
+		},
+
+		viewCodeClick: function(event) {
+
+			this.global_dispatcher.trigger('edit:viewCode');
+
+			$(event.target).removeClass('deselected');
+			$('#btn-viewvisual', this.$el).addClass('deselected');
+
+			return false;
+
+		},
+
+		viewVisualClick: function(event) {
+
+			this.global_dispatcher.trigger('edit:viewVisual');
+
+			$(event.target).removeClass('deselected');
+			$('#btn-viewcode', this.$el).addClass('deselected');
+
+			event.preventDefault();
+
+			return false;
 
 		},
 
