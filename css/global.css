@@ -42,7 +42,7 @@ a{color:#ffffff;text-decoration:none;}a:hover{color:#ffffff;}
 .ui-popup h1{font-size:1.2em;font-weight:bold;color:#b3b3b3;}
 .ui-popup .link{color:#66ccff;}.ui-popup .link:hover{text-decoration:underline;}
 .ui-popup .ui-button{margin-left:10px;margin-right:10px;}
-.toolbar{display:block;height:25px;background:#333333;background:-webkit-linear-gradient(90deg, #666666 0px, #333333 3px);background:-moz-linear-gradient(bottom, #666666 0px, #333333 3px);padding:10px;}.toolbar:before{content:url('../img/letscode-logo-toolbar.png');float:left;margin-top:-4px;padding-right:20px;}
+.toolbar{display:block;height:25px;background:#333333;background:-webkit-linear-gradient(90deg, #666666 0px, #333333 3px);background:-moz-linear-gradient(bottom, #666666 0px, #333333 3px);padding:10px;}.toolbar .letscode-logo{float:left;margin-top:-4px;padding-right:20px;}
 .toolbar #tb-projname{line-height:23px;margin-left:-10px;}
 .toolbar #tb-undo{float:right;margin-right:10px;text-align:right;}.toolbar #tb-undo:before{padding-right:10px;}
 .toolbar #tb-undo:before{content:url('../img/icons/icon-undo.png');float:left;margin-top:0px;height:0px;}
