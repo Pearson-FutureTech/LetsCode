@@ -98,9 +98,9 @@ a {
 
 .ui-button {
     //height: @button-height;
-    background: @col-button;
-    background: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
-    background: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
+    background-color: @col-button;
+    background-color: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
+    background-color: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
     padding: @ui-spc/2 @ui-spc*1.5 @ui-spc/2 @ui-spc*1.5;
     border-radius: @ui-bradius;
     color: @col-button-text;
@@ -139,9 +139,9 @@ a {
 
     // button states and pseudo-classes
     &:hover {
-        background: lighten(@col-button, 10%);
-        background: -webkit-linear-gradient(270deg, lighten(@col-button, 10%), @col-button);
-        background: -moz-linear-gradient(top, lighten(@col-button, 10%), @col-button);
+        background-color: lighten(@col-button, 10%);
+        background-color: -webkit-linear-gradient(270deg, lighten(@col-button, 10%), @col-button);
+        background-color: -moz-linear-gradient(top, lighten(@col-button, 10%), @col-button);
         color: @col-text-highlight;
     }
     &.deselected {
@@ -391,25 +391,31 @@ body:-ms-full-screen        #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen
 
 
 #lessonpanel {
-    position: absolute;
     top: 45px; left: 0; right: 0;
-	height: 16px;
+	height: 36px;
     background: rgba(0, 0, 0, 0.5);
-    padding: @ui-spc;
+    padding: 0;
 	z-index: 1;
+
+    &.fade {
+        -webkit-filter: contrast(65%);
+    }
 
 	.tutorial-description {
 		float: left;
-		p { margin: 0; }
+		p {
+            margin: 0;
+            padding: @ui-spc;
+        }
 	}
 
     .close-button {
-        display: inline;
         float: right;
-        content:url('../img/icons/icon-close-white-circle.png');
-        padding-right: 0;
-        padding-top: 0;
-        padding-left: 0;
+        background-image: url('../img/icons/icon-close-white-circle.png');
+        background-position: 93px 6px;
+        background-repeat: no-repeat;
+        padding-right: 35px;
+        margin: 3px @ui-spc 0 0;
     }
 }
 

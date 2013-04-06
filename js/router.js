@@ -122,6 +122,7 @@ define([
 
 				var self = this;
 				this.initializeScenario(function() {
+					self.views.appView.model = self.scenario;
 					self.views.appView.model.set({tutorialNumber: tutorialNumInt});
 					self.views.appView.render();
 				});
@@ -146,6 +147,8 @@ define([
 
 				var self = this;
 				this.initializeScenario(function() {
+					self.views.demoAppView.model = self.scenario;
+					self.views.demoAppView.model.set({tutorialNumber: -1});
 					self.views.demoAppView.render();
 				});
 			}
@@ -195,8 +198,6 @@ define([
 					demo_app_setup_data: demoAppSetup ? demoAppSetup[0] : null,
 					asset_path: 'content/scenarios/'+scenarioId+'/assets/'
 				});
-
-				self.views.appView.model = self.scenario;
 
 				if( callback != undefined ) {
 					callback();

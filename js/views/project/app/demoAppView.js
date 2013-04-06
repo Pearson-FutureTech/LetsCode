@@ -1,23 +1,30 @@
 /*
- * "Here's one we made earlier" versions to demonstrate that you can share a project and play it on a tablet.
- * XXX This is all a bit hacky...
- * The example that it links you to at the end of the tutorial is at: /#myapp
+ * Just for a quick demo... "Here's one we made earlier" published apps to
+ * demonstrate sharing a project and being able to play it on a tablet.
+ * Real publishing is not yet implemented.
  */
 
 define([
 	'jQuery',
 	'Underscore',
-	'Backbone'
-], function($, _, Backbone){
+	'Backbone',
+	'views/project/app/appView'
+], function($, _, Backbone, AppView){
 
-	var PredefinedDemoView = Backbone.View.extend({
+	var DemoAppView = Backbone.View.extend({
 
 		el: "#letscode",
 
 		initialize: function() {
+
+			this.appView = new AppView();
+
 		},
 
 		render: function() {
+
+			this.appView.model = this.model;
+			this.appView.render();
 
 			$('#toolbar', this.$el).hide();
 			$('#lessonpanel', this.$el).hide();
@@ -32,6 +39,6 @@ define([
 
 	});
 	
-	return PredefinedDemoView;
+	return DemoAppView;
 	
 });

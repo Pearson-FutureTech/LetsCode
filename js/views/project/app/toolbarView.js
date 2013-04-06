@@ -38,25 +38,32 @@ define([
 			});
 
 			// Outside of the toolbar element, but logically belongs here for now
-			$('#publish-confirm').bind('click', this.closePublishPanel);
+			$('#publish-cancel').bind('click', this.closePublishPanel);
 
         },
 
 		render: function() {
 
-			var tutorial = this.model.tutorials.models[this.model.get('tutorialNumber')];
+			var tutorialNumber = this.model.get('tutorialNumber');
 
-			var scenarioName = tutorial ? tutorial.get('project') : app.router.scenarioName;
-			var tutorialName = tutorial ? tutorial.get('name') : null;
+			if( tutorialNumber != -1 ) {
 
-			if( tutorial ) {
+				var tutorial = this.model.tutorials.models[tutorialNumber];
 
-				var headingEl = ProjectHeadlineTemplate({
-					scenario: scenarioName,
-					tutorial: tutorialName
-				});
+				if( tutorial ) {
 
-				$('#tb-projname', this.$el).html(headingEl);
+					var scenarioName = tutorial ? tutorial.get('project') : app.router.scenarioName;
+					var tutorialName = tutorial ? tutorial.get('name') : null;
+
+
+					var headingEl = ProjectHeadlineTemplate({
+						scenario: scenarioName,
+						tutorial: tutorialName
+					});
+
+					$('#tb-projname', this.$el).html(headingEl);
+
+				}
 
 			}
 
