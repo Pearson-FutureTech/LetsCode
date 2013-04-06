@@ -15,14 +15,9 @@ define([
 
 		el: "#letscode",
 
-		initialize: function() {
-
-			this.appView = new AppView();
-
-		},
-
 		render: function() {
 
+			this.appView = new AppView();
 			this.appView.model = this.model;
 			this.appView.render();
 

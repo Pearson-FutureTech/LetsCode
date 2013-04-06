@@ -128,6 +128,7 @@ define([
 				});
 
 			} else {
+				this.views.appView.model = this.scenario;
 				this.views.appView.model.set({tutorialNumber: tutorialNumInt});
 				this.views.appView.render();
 			}
@@ -151,9 +152,12 @@ define([
 					self.views.demoAppView.model.set({tutorialNumber: -1});
 					self.views.demoAppView.render();
 				});
+			} else {
+				this.views.demoAppView.model = this.scenario;
+				this.views.demoAppView.model.set({tutorialNumber: -1});
+				this.views.demoAppView.render();
 			}
 
-			this.views.demoAppView.render();
 		},
 
 		/*

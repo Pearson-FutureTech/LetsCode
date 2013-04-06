@@ -131,6 +131,11 @@ define([
 
 		updateOnStepChange: function(tutorialStep) {
 
+			if( !this.tutorial ) {
+				console.log('Warning: step change fired but tutorial is falsy');
+				return;
+			}
+
 			$('li', this.$el).hide();
 
             var tutorialStepEl = $('#tutorial-steps > li:eq('+ this.currentStepIndex + ')');
