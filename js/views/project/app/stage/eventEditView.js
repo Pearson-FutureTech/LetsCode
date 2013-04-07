@@ -62,6 +62,8 @@ define([
 
 				// Trigger refreshing the stage
 				context.global_dispatcher.trigger('object:eventListenerRemoved');
+
+				event.preventDefault();
 			});
 
 		},

@@ -99,6 +99,7 @@ define([
 
 		deleteInstance: function() {
 			this.model.destroy();
+			return false;
 		}
 	
 	});
