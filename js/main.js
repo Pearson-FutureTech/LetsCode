@@ -6,6 +6,7 @@ require.config({
 	paths: {
 		jQuery: 'lib/jquery/jquery-1.7.2.min',
 		jQueryUI: 'lib/jquery-ui/jquery-ui-1.8.22.custom.min',
+		jQueryUITouchPunch: 'lib/jquery-ui/jquery.ui.touch-punch',
 		Underscore: 'lib/underscore/underscore-1.3.3.min',
 		Backbone: 'lib/backbone/backbone-0.9.2.min',
 		Handlebars: 'lib/handlebars/handlebars',

@@ -14,10 +14,12 @@ define([
 
 		initialize: function() {
 
+			// XXX Outside of our $el so can't use in-built events
 			$('#btn-addobject').bind('click', {context: this}, function(event) {
 				event.data.context.togglePopupShown();
 			});
 
+			// XXX Outside of our $el so can't use in-built events
 			$('#stage-container').bind('click', {context: this}, function(event) {
 				event.data.context.hide();
 			});

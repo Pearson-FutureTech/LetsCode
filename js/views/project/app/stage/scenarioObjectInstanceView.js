@@ -9,8 +9,9 @@ define([
 	'Backbone',
 	'views/project/app/stage/scenarioObjectInstanceEditView',
 	'jQueryUI',
+	'jQueryUITouchPunch',
 	'sprite'
-], function($, _, Backbone, ScenarioObjectInstanceEditView, sprite){
+], function($, _, Backbone, ScenarioObjectInstanceEditView){
 
 	var ScenarioObjectInstanceView = Backbone.View.extend({
 

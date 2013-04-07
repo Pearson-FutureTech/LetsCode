@@ -272,12 +272,15 @@ corresponding licenses:
   http://jquery.com/
   https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt (MIT)
 
-- JQuery UI:  Copyright 2013 jQuery Foundation and other contributors,
+- JQuery UI: Copyright 2013 jQuery Foundation and other contributors,
   http://jqueryui.com/
   https://github.com/jquery/jquery-ui/blob/master/MIT-LICENSE.txt (MIT)
 
+- JQuery UI Touch Punch: Copyright 2011, Dave Furfero
+  http://touchpunch.furf.com/mit.txt (MIT)
+
 - Require.js:  Copyright (c) 2010-2011, The Dojo Foundation
-  https://github.com/jrburke/requirejs/blob/master/LICENSE (MIT and BSD)
+  https://github.com/jrburke/requirejs/blob/master/LICENSE (MIT or BSD)
 
 - Require.js HandleBars plugin:
   https://github.com/SlexAxton/require-handlebars-plugin

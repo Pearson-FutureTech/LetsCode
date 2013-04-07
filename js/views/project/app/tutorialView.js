@@ -62,11 +62,7 @@ define([
 
 		nextStep: function() {
 
-			console.log('current step - ', this.currentStepIndex);
-
 			if( this.currentStepIndex < this.tutorial.get('steps').length - 1) {
-
-				console.log('next step - ', this.currentStepIndex + 1);
 
 				this.currentStepIndex = this.currentStepIndex + 1;
 
@@ -135,8 +131,6 @@ define([
 
 		updateOnStepChange: function(tutorialStep) {
 
-			console.log('update on step change');
-
 			if( !this.tutorial ) {
 				console.log('Warning: step change fired but tutorial is falsy');
 				return;
@@ -145,8 +139,6 @@ define([
 			$('li', this.$el).hide();
 
             var tutorialStepEl = $('#tutorial-steps > li:eq('+ this.currentStepIndex + ')');
-
-			console.log('tutorial step element:', tutorialStepEl);
 
 			// Change wording of 'Continue' button if last step
 			if( this.currentStepIndex >= this.tutorial.get('steps').length - 1 ) {
@@ -161,6 +153,9 @@ define([
 			$('.continue', tutorialStepEl).bind('click', {context: this}, function(event) {
 				event.data.context.global_dispatcher.trigger("tutorial:next");
 			});
+
+			// XXX Also need to remove element click handler from previous step?
+			this.setupElementClicks(tutorialStep);
 
 			this.showStep(tutorialStep, tutorialStepEl);
 
@@ -232,6 +227,26 @@ define([
 
 		},
 
+		setupElementClicks: function(tutorialStep) {
+
+			if( tutorialStep.elementToClick ) {
+				// Unbind first so we don't create duplicate handlers
+				$(tutorialStep.elementToClick).unbind('click', this.elementClickHandler);
+				$(tutorialStep.elementToClick).unbind('dblclick', this.elementClickHandler);
+				$(tutorialStep.elementToClick).bind('click', {context: this, tutorialStep: tutorialStep},
+					this.elementClickHandler);
+			}
+
+			if( tutorialStep.elementToDoubleClick ) {
+				// Unbind first so we don't create duplicate handlers
+				$(tutorialStep.elementToDoubleClick).unbind('click', this.elementClickHandler);
+				$(tutorialStep.elementToDoubleClick).unbind('dblclick', this.elementClickHandler);
+				$(tutorialStep.elementToDoubleClick).bind('dblclick', {context: this, tutorialStep: tutorialStep},
+					this.elementClickHandler);
+			}
+
+		},
+
 		applyHighlights: function(tutorialStep) {
 
 			$('.highlight').removeClass('highlight');
@@ -253,22 +268,6 @@ define([
 
 			if( fadeSelector ) {
 				$(fadeSelector).addClass('fade');
-			}
-
-			if( tutorialStep.elementToClick ) {
-				// Unbind first so we don't create duplicate handlers
-				$(tutorialStep.elementToClick).unbind('click', this.elementClickHandler);
-				$(tutorialStep.elementToClick).unbind('dblclick', this.elementClickHandler);
-				$(tutorialStep.elementToClick).bind('click', {context: this, tutorialStep: tutorialStep},
-					this.elementClickHandler);
-			}
-
-			if( tutorialStep.elementToDoubleClick ) {
-				// Unbind first so we don't create duplicate handlers
-				$(tutorialStep.elementToDoubleClick).unbind('click', this.elementClickHandler);
-				$(tutorialStep.elementToDoubleClick).unbind('dblclick', this.elementClickHandler);
-				$(tutorialStep.elementToDoubleClick).bind('dblclick', {context: this, tutorialStep: tutorialStep},
-					this.elementClickHandler);
 			}
 
 		},
@@ -317,9 +316,9 @@ define([
 
 		elementClickHandler: function(event) {
 
-			if( !this.tutorial ) return;
-
 			var context = event.data.context;
+
+			if( !context.tutorial ) return;
 
 			// XXX Hacky - need to make sure we don't count a double-click as two separate 'next's
 			if( Date.now() > context.lastElementClickTime + 500 ) {
