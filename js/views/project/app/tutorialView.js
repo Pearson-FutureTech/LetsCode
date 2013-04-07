@@ -301,6 +301,8 @@ define([
 
 		handleObjectUpdated: function(obj) {
 
+			if( !this.tutorial ) return;
+
 			var step = this.tutorial.get('steps')[this.currentStepIndex];
 
 			if( step && step.objectToUpdate && step.objectToUpdate === obj.get('name') ) {
@@ -314,6 +316,8 @@ define([
 		},
 
 		elementClickHandler: function(event) {
+
+			if( !this.tutorial ) return;
 
 			var context = event.data.context;
 

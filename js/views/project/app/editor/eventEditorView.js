@@ -55,6 +55,12 @@ define([
 				this.refresh();
 			}, this);
 
+			// Outside of our $el (so can't use in-built events), but logically belongs here...
+			$(document).on('click', '#detailspanel .eventlist a', function(event) {
+				// XXX Just ignores these links for now - should show the appropriate method
+				event.preventDefault();
+			});
+
 		},
 
 		render: function(){
