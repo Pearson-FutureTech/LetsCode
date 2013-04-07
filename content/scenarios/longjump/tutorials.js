@@ -6,19 +6,19 @@
 		"steps": [
 			{
 				"contents": "<p>This is the main screen of Let's Code!.</p><p>Let's take a tour...</p>",
-				"fadeSelector": "#toolbar, #lessonpanel, #editpanel, #stage",
+				"fadeSelector": "#toolbar, #editpanel, #stage",
 				"continue": true
 			},
 			{
 				"contents": "<p>This central area is called the <dfn>Stage</dfn>, and it's where the app that you're creating is displayed.</p>",
 				"highlightSelector": "#stage",
-				"fadeSelector": "#toolbar, #lessonpanel, #editpanel",
+				"fadeSelector": "#toolbar, #editpanel",
 				"continue": true
 			},
 			{
 				"contents": "<p>At the top is a <dfn>toolbar</dfn>, where you can do a number of things on the project you're working on.</p>",
 				"highlightSelector": "#toolbar",
-				"fadeSelector": "#lessonpanel, #editpanel, #stage",
+				"fadeSelector": "#editpanel, #stage",
 				"continue": true,
 				"substeps": [
 					{
@@ -43,7 +43,7 @@
             {
                 "contents": "<p>At the top is a <dfn>toolbar</dfn>, where you can do a number of things on the project you're working on.</p>",
                 "highlightSelector": "#toolbar",
-                "fadeSelector": "#lessonpanel, #editpanel, #stage",
+                "fadeSelector": "#editpanel, #stage",
                 "continue": true,
                 "substeps": [
                     {
@@ -68,7 +68,7 @@
 			{
 				"contents": "<p>Below the stage is the <dfn>editing panel</dfn>, where we can edit our project.</p><p>We'll go through this in more detail later.</p>",
 				"highlightSelector": "#editpanel",
-				"fadeSelector": "#toolbar, #lessonpanel, #stage",
+				"fadeSelector": "#toolbar, #stage",
                 "arrowDirection": "bottom",
                 "continue": true
 			},

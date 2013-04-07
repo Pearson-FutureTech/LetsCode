@@ -51,11 +51,12 @@
 
 
 // Geometry
-@min-width: 1004px;                 // 1024px less @ui-spc on each side
+@min-width: 768px;
 @ui-spc: 10px;                      // Default spacer between UI components
 @ui-spc-list: round(@ui-spc/3);     // spacer between list items
 @ui-bradius: 14px;
 @button-height: 20px;
+@toolbar-inner-height: 25px;
 @tab-height: 25px;
 @tab-top: @ui-spc*2 + @tab-height;
 @panellist-width: 180px;
@@ -292,17 +293,20 @@ a {
 
 
 .toolbar {
-    display: block;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
     height: @button-height + @ui-spc/2;
+    min-width: @min-width;
     background: @col-background;
     background: -webkit-linear-gradient(90deg, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
     background: -moz-linear-gradient(bottom, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
-    padding: @ui-spc;
-	/*min-width: 1002px;*/
+    padding: @ui-spc 0;
 
     .letscode-logo {
         float: left;
         margin-top: -4px;
+        padding-left: @ui-spc;
         padding-right: @ui-spc*2;
     }
     #tb-projname {
@@ -366,11 +370,19 @@ a {
         float: right;
         width: 20px;
         height: 20px;
-        margin-top: 2px;
+        margin: 2px @ui-spc 0 0;
 
         background-image: url('../img/icons/icon-fullscreen-off.png');
         &:hover {
             background-image:url('../img/icons/icon-fullscreen-off-hover.png');
+        }
+    }
+
+    /* Hide not-yet-implemented undo & redo buttons if there's not enough room */
+    @media screen and (max-width : 900px) {
+        #tb-undo,
+        #tb-redo {
+            display: none;
         }
     }
 }
@@ -391,15 +403,12 @@ body:-ms-full-screen        #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen
 
 
 #lessonpanel {
+    position: fixed;
     top: 45px; left: 0; right: 0;
 	height: 36px;
     background: rgba(0, 0, 0, 0.5);
     padding: 0;
 	z-index: 1;
-
-    &.fade {
-        -webkit-filter: contrast(65%);
-    }
 
 	.tutorial-description {
 		float: left;

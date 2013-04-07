@@ -17,11 +17,15 @@ define([
 
 		el: "#editpanel",
 
+		openHeight: 300,
+		padding: 10,
+
 		events: {
 			'click .ui-tab': 'tabClick',
 			'click #btn-viewcode': 'viewCodeClick',
 			'click #btn-viewvisual': 'viewVisualClick',
-			'click #btn-debug': 'ignoreClick'
+			'click #btn-debug': 'ignoreClick',
+			'click .propdelete': 'ignoreClick'
 		},
 
 		views: [],
@@ -47,8 +51,12 @@ define([
 
 			// On resize of edit panel, trigger event so stage can update its position
 			this.$el.bind('resize', {context: this}, function(event, ui) {
+
 				// + 20px to include padding
-				event.data.context.global_dispatcher.trigger('edit:panelResized', ui.size.height + 20);
+				var newHeight = event.data.context.$el.height() + 20;
+
+				event.data.context.global_dispatcher.trigger('edit:panelResized', newHeight);
+
 			});
 
 			this.global_dispatcher.bind('state:previewMode', function() {
@@ -100,11 +108,18 @@ define([
 
 		openPanel: function() {
 
-			var that = this;
-			this.$el.animate({height: '280px', padding: '10px'}, 1000, function() {
-				that.global_dispatcher.trigger('edit:panelResized', 300);
-			});
-			this.global_dispatcher.trigger('edit:panelResizing', 300, 1000);
+			if( this.$el.height() < (this.openHeight - 2*this.padding) ) {
+
+				var that = this;
+				this.$el.animate({
+						height: (this.openHeight-2*this.padding)+'px',
+						padding: this.padding+'px'
+					}, 1000, function() {
+						that.global_dispatcher.trigger('edit:panelResized', 300);
+					});
+				this.global_dispatcher.trigger('edit:panelResizing', 300, 1000);
+
+			}
 
 		},
 
