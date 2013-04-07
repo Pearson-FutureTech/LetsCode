@@ -59,11 +59,10 @@ a{color:#ffffff;text-decoration:none;}a:hover{color:#ffffff;}
 .toolbar #tb-editpreview .ui-button.deselected{background:#999999;background:-webkit-linear-gradient(270deg, #999999, #666666);background:-moz-linear-gradient(top, #999999, #666666);}
 .toolbar .fullscreen{float:right;width:20px;height:20px;margin:2px 10px 0 0;background-image:url('../img/icons/icon-fullscreen-off.png');}.toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-off-hover.png');}
 @media screen and (max-width:900px){.toolbar #tb-undo,.toolbar #tb-redo{display:none;}}
-body:full-screen #tb-fullscreen,#tb-fullscreen-home{background-image:url('../img/icons/icon-fullscreen-on.png');}body:full-screen #tb-fullscreen:hover,#tb-fullscreen-home:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
-body:-webkit-full-screen #tb-fullscreen,#tb-fullscreen-home{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-webkit-full-screen #tb-fullscreen:hover,#tb-fullscreen-home:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
-body:-moz-full-screen #tb-fullscreen,#tb-fullscreen-home{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-moz-full-screen #tb-fullscreen:hover,#tb-fullscreen-home:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
-body:-o-full-screen #tb-fullscreen,#tb-fullscreen-home{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-o-full-screen #tb-fullscreen:hover,#tb-fullscreen-home:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
-body:-ms-full-screen #tb-fullscreen,#tb-fullscreen-home{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-ms-full-screen #tb-fullscreen:hover,#tb-fullscreen-home:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
+body:fullscreen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:fullscreen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
+body:full-screen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:full-screen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
+body:-webkit-full-screen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-webkit-full-screen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
+body:-moz-full-screen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-moz-full-screen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
 #lessonpanel{position:fixed;top:45px;left:0;right:0;height:36px;background:rgba(0, 0, 0, 0.5);padding:0;z-index:1;}#lessonpanel .tutorial-description{float:left;}#lessonpanel .tutorial-description p{margin:0;padding:10px;}
 #lessonpanel .close-button{float:right;background-image:url('../img/icons/icon-close-white-circle.png');background-position:93px 6px;background-repeat:no-repeat;padding-right:35px;margin:3px 10px 0 0;}
 #debugpanel{background:rgba(0, 0, 0, 0.25);}
@@ -197,7 +196,7 @@ body:-ms-full-screen #tb-fullscreen,#tb-fullscreen-home{background-image:url('..
 #stage-container div.edit ul.edit-events>li.is-linked:hover:after{border-left-color:#66ccff;}
 #stage-container div.edit ul.edit-events>li.is-linked:before{width:0;border-color:transparent transparent transparent #ff6633;right:-18px;}
 #stage-container div.edit ul.edit-events>li.is-linked:after{content:"";border-color:#ff6633 transparent #ff6633 #444444;border-style:solid;border-width:10px 0 10px 6px;position:absolute;width:0;height:0;top:0;right:-6px;}
-#stage-container #stage{position:relative;top:50%;width:1024px;height:450px;edit-panel-height:280px;margin:-350px auto 0 auto;background:#fff;box-shadow:6px 4px 8px rgba(0, 0, 0, 0.25),-2px 2px 4px rgba(0, 0, 0, 0.25);}#stage-container #stage >div{position:absolute !important;}
+#stage-container #stage{position:relative;top:50%;width:1024px;height:450px;margin:-350px auto 0 auto;background:#fff;box-shadow:6px 4px 8px rgba(0, 0, 0, 0.25),-2px 2px 4px rgba(0, 0, 0, 0.25);}#stage-container #stage >div{position:absolute !important;}
 #stage-container #stage div.sjs{top:0;left:0;pointer-events:none;}
 #stage-container #stage div.sjs>div>div{border:1px solid red;pointer-events:auto;}
 #stage-container #stage.tablet-demo{margin:0 auto;top:90px;}

@@ -393,14 +393,21 @@ a {
         background-image:url('../img/icons/icon-fullscreen-on-hover.png');
     }
 }
-// apparently these need to be repeated to work
-//  -- see http://www.sitepoint.com/html5-full-screen-api/#fbid=LmAi3nyqiZr
-body:full-screen            #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen(); }
-body:-webkit-full-screen    #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen(); }
-body:-moz-full-screen       #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen(); }
-body:-o-full-screen         #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen(); }
-body:-ms-full-screen        #tb-fullscreen, #tb-fullscreen-home { .tb-fullscreen(); }
 
+// "For some bizarre reason", can't combine into one CSS rule
+// See: http://www.sitepoint.com/html5-full-screen-api/#fbid=LmAi3nyqiZr
+body:fullscreen .toolbar .fullscreen {
+    .tb-fullscreen();
+}
+body:full-screen .toolbar .fullscreen {
+    .tb-fullscreen();
+}
+body:-webkit-full-screen .toolbar .fullscreen {
+    .tb-fullscreen();
+}
+body:-moz-full-screen .toolbar .fullscreen {
+    .tb-fullscreen();
+}
 
 #lessonpanel {
     position: fixed;
