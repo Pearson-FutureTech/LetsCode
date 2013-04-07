@@ -16,7 +16,7 @@ define([
 		/*
 		 * We don't do too much here other than setting up subscriptions to global events.
 		 */
-		initialize: function(options){
+		initialize: function() {
 
 			this.global_dispatcher.bind("state:editMode", function() {
 				this.set('editable', true);

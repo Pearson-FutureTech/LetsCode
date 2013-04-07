@@ -35,16 +35,14 @@ define([
 
 				// Check model is ready - this is for handling new objects after stage has been set up, not before
 				if( this.model ) {
-
-					this.render();
+					this.refresh();
 					this.global_dispatcher.trigger('object:onSelect', obj);
-
 				}
 
 			}, this);
 
 			this.global_dispatcher.bind('object:removed object:eventListenerRemoved', function() {
-				this.render();
+				this.refresh();
 			}, this);
 
 			// Update position when edit panel is resized
@@ -62,6 +60,12 @@ define([
 		},
 
 		render: function() {
+
+			this.refresh();
+
+		},
+
+		refresh: function() {
 
 			this.$el.empty();
 

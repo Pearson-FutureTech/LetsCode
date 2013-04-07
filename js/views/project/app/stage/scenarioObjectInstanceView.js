@@ -244,30 +244,35 @@ define([
 
 		/*
 		 * Ideally we should refactor this view, so that we have separate views for editable
-		 * and non-editable objects. This'll do for now though.
+		 * and non-editable objects. This'll do for now though...
 		 */
 		refresh: function() {
 
 			if( !this.isSprite ) {
 
-				// We can assume that any properties which are not recognised by .css()
-				// will fail silently.
+				// Assume that any properties which are not recognised by .css()
+				// will fail silently...
 				_.each(this.model.get('properties'), function(prop, key) {
 					this.$el.css(key, prop.value);
-					this.$el.css(key, prop.value + "px"); // Ugh!
+					this.$el.css(key, prop.value + "px"); // Eugh!
 				}, this);
 
 				_.each(this.model.get('privateProperties'), function(prop, key) {
 					this.$el.css(key, prop.value);
-					this.$el.css(key, prop.value + "px"); // Ugh!
+					this.$el.css(key, prop.value + "px"); // Eugh!
 				}, this);
 
 			}
 
-			// For safety, unbind and destroy any events or draggables which might
-			// end up being referenced twice by accident.
+			// For safety, unbind and destroy any events or draggables to hopefully
+			// prevent them being referenced twice by accident.
 
-			this.$el.unbind('createLink:selected object:onClick click dragstart drag dragstop hover');
+			this.$el.unbind('click');
+			this.$el.unbind('hover');
+			this.$el.unbind('drag');
+			this.$el.unbind('dragstart');
+			this.$el.unbind('dragstop');
+
 			this.$el.draggable('destroy'); // 'disable' won't cut it here because we kill all event bindings
 
 			// Unbind events - we'll re-bind them below...

@@ -62,7 +62,11 @@ define([
 
 		nextStep: function() {
 
+			console.log('current step - ', this.currentStepIndex);
+
 			if( this.currentStepIndex < this.tutorial.get('steps').length - 1) {
+
+				console.log('next step - ', this.currentStepIndex + 1);
 
 				this.currentStepIndex = this.currentStepIndex + 1;
 
@@ -131,6 +135,8 @@ define([
 
 		updateOnStepChange: function(tutorialStep) {
 
+			console.log('update on step change');
+
 			if( !this.tutorial ) {
 				console.log('Warning: step change fired but tutorial is falsy');
 				return;
@@ -139,6 +145,8 @@ define([
 			$('li', this.$el).hide();
 
             var tutorialStepEl = $('#tutorial-steps > li:eq('+ this.currentStepIndex + ')');
+
+			console.log('tutorial step element:', tutorialStepEl);
 
 			// Change wording of 'Continue' button if last step
 			if( this.currentStepIndex >= this.tutorial.get('steps').length - 1 ) {

@@ -53,7 +53,8 @@ define([
 			this.$el.show();
 
 			// If tutorial, start in edit mode (this will ensure edit panel is open)
-			if( this.model.get('tutorialNumber') != -1 ) {
+			// XXX Should store the edit/preview mode value rather than looking up class
+			if( this.model.get('tutorialNumber') != -1 && $('#btn-edit').hasClass('deselected') ) {
 				this.global_dispatcher.trigger('state:editMode');
 			}
 
