@@ -58,8 +58,6 @@ define([
 		 */
 		initialize: function() {
 
-			console.log('Router initialize');
-
 			this.createTopLevelViews();
 
 		},
@@ -118,7 +116,9 @@ define([
 
 			var tutorialNumInt = tutorialNumber? parseInt(tutorialNumber) - 1 : -1;
 
-			if( this.scenario == null ) {
+			if( this.demoApp || this.scenario == null ) {
+
+				this.demoApp = false;
 
 				var self = this;
 				this.initializeScenario(function() {
@@ -144,19 +144,13 @@ define([
 
 			this.demoApp = appName;
 
-			if( this.scenario == null ) {
-
-				var self = this;
-				this.initializeScenario(function() {
-					self.views.demoAppView.model = self.scenario;
-					self.views.demoAppView.model.set({tutorialNumber: -1});
-					self.views.demoAppView.render();
-				});
-			} else {
-				this.views.demoAppView.model = this.scenario;
-				this.views.demoAppView.model.set({tutorialNumber: -1});
-				this.views.demoAppView.render();
-			}
+			// Re-load scenario to make sure we have this demo setup
+			var self = this;
+			this.initializeScenario(function() {
+				self.views.demoAppView.model = self.scenario;
+				self.views.demoAppView.model.set({tutorialNumber: -1});
+				self.views.demoAppView.render();
+			});
 
 		},
 

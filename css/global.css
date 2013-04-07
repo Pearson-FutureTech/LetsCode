@@ -199,7 +199,7 @@ body:-moz-full-screen .toolbar .fullscreen{background-image:url('../img/icons/ic
 #stage-container #stage{position:relative;top:50%;width:1024px;height:450px;margin:-350px auto 0 auto;background:#fff;box-shadow:6px 4px 8px rgba(0, 0, 0, 0.25),-2px 2px 4px rgba(0, 0, 0, 0.25);}#stage-container #stage >div{position:absolute !important;}
 #stage-container #stage div.sjs{top:0;left:0;pointer-events:none;}
 #stage-container #stage div.sjs>div>div{border:1px solid red;pointer-events:auto;}
-#stage-container #stage.tablet-demo{margin:0 auto;top:90px;}
+#stage-container #stage.tablet-demo{margin:0 auto !important;top:90px;}
 #stage-container .loading{width:100%;height:100%;position:absolute;background:url(../img/loading.gif) no-repeat center center;}
 #tutorial-steps{list-style-type:none;margin:0;color:#000;}#tutorial-steps li{display:none;position:absolute;z-index:2000;list-style-type:none;pointer-events:none;float:left;left:50%;top:30%;}#tutorial-steps li .content{float:left;left:-50%;top:-50%;position:relative;width:300px;min-height:80px;border:6px solid #66ccff;border-radius:40px;padding:20px;background-color:#fff;box-shadow:3px 3px 10px 4px rgba(0, 0, 0, 0.25);}#tutorial-steps li .content p{font-size:1.2em;text-align:center;line-height:1.2em;margin-top:0.5em;margin-bottom:0.5em;}#tutorial-steps li .content p dfn{font-style:normal;font-weight:bold;}
 #tutorial-steps li .content p instruction{font-weight:bold;color:#006699;}

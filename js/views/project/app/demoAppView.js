@@ -8,8 +8,9 @@ define([
 	'jQuery',
 	'Underscore',
 	'Backbone',
+	'app',
 	'views/project/app/appView'
-], function($, _, Backbone, AppView){
+], function($, _, Backbone, app, AppView){
 
 	var DemoAppView = Backbone.View.extend({
 
@@ -17,13 +18,15 @@ define([
 
 		render: function() {
 
-			this.appView = new AppView();
+			// We piggy-back on the regular app view
+			this.appView = app.router.views.appView;
 			this.appView.model = this.model;
 			this.appView.render();
 
-			$('#toolbar', this.$el).hide();
 			$('#lessonpanel', this.$el).hide();
+			$('#publish-confirm', this.$el).hide();
 			$('#editpanel', this.$el).hide();
+			$('#toolbar .ui-button', this.$el).hide();
 
 			$('#stage', this.$el).addClass('tablet-demo');
 

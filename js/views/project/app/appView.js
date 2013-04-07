@@ -49,6 +49,11 @@ define([
 			this.views.editPanelView.render();
 			this.views.stageView.render();
 
+			// In case we've come back from the published app demo view...
+			$('#editpanel', this.$el).show();
+			$('#toolbar .ui-button', this.$el).show();
+			$('#stage', this.$el).removeClass('tablet-demo');
+
 			$('.page').hide();
 			this.$el.show();
 
