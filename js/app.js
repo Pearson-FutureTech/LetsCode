@@ -15,12 +15,6 @@ define([
 			// This starts our application by routing the initial URL
 			Backbone.history.start();
 
-			// Prevent 'bounce' scroll on touch screen device
-			// See: http://www.kylejlarson.com/blog/2011/fixed-elements-and-scrolling-divs-in-ios-5/
-			document.addEventListener('touchmove', function(event) {
-				event.preventDefault();
-			}, false);
-
 		}
 		
 	};

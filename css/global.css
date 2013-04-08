@@ -58,7 +58,7 @@ a{color:#ffffff;text-decoration:none;}a:hover{color:#ffffff;}
 .toolbar #tb-editpreview{float:right;height:20px;margin:0 20px 0 0;}.toolbar #tb-editpreview .ui-button{float:right;width:60px;background:#66ccff;background:-webkit-linear-gradient(270deg, #66ccff, #00aaff);background:-moz-linear-gradient(top, #66ccff, #00aaff);}
 .toolbar #tb-editpreview .ui-button.deselected{background:#999999;background:-webkit-linear-gradient(270deg, #999999, #666666);background:-moz-linear-gradient(top, #999999, #666666);}
 .toolbar .fullscreen{float:right;width:20px;height:20px;margin:2px 10px 0 0;background-image:url('../img/icons/icon-fullscreen-off.png');}.toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-off-hover.png');}
-@media screen and (max-width:900px){.toolbar #tb-undo,.toolbar #tb-redo{display:none;}}
+@media screen and (max-width:900px){.toolbar #tb-undo,.toolbar #tb-redo{display:none !important;}}
 body:fullscreen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:fullscreen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
 body:full-screen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:full-screen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
 body:-webkit-full-screen .toolbar .fullscreen{background-image:url('../img/icons/icon-fullscreen-on.png');}body:-webkit-full-screen .toolbar .fullscreen:hover{background-image:url('../img/icons/icon-fullscreen-on-hover.png');}
@@ -81,7 +81,7 @@ body:-moz-full-screen .toolbar .fullscreen{background-image:url('../img/icons/ic
 .help-panel{display:none;position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(0, 0, 0, 0.5);z-index:20000;}
 .help-frame{position:absolute;left:10%;right:10%;top:10%;bottom:10%;margin:0;padding:0;border:6px solid #333333;box-shadow:3px 3px 10px 4px rgba(0, 0, 0, 0.25);border-radius:14px;background:white;}.help-frame>h1{background:#666666;color:white;margin:0;padding:5px 10px;border-top-left-radius:6px;border-top-right-radius:6px;font-size:2em;}
 .help-frame .help-close{content:url('../img/icons/icon-close-white-circle.png');float:right;padding-right:5px;padding-top:10px;opacity:0.5;}.help-frame .help-close:hover{opacity:1.0;}
-.help-frame>div{position:absolute;left:0;right:0;top:43px;bottom:0;margin:5px;overflow:scroll;color:#222;padding:10px;}.help-frame>div p{padding-left:10px;margin-top:5px;}
+.help-frame>div{position:absolute;left:0;right:0;top:43px;bottom:0;margin:5px;overflow:scroll;-webkit-overflow-scrolling:touch;color:#222;padding:10px;}.help-frame>div p{padding-left:10px;margin-top:5px;}
 .help-frame>div a{color:#0088cc;font-weight:bold;}.help-frame>div a:hover{color:#66ccff;}
 .help-frame>div h1{font-size:1.5em;color:#99cc33;}
 .help-frame>div h3{padding-left:10px;font-size:1.2em;}
@@ -108,7 +108,7 @@ body:-moz-full-screen .toolbar .fullscreen{background-image:url('../img/icons/ic
 #editpanel #tab-methods{left:10px;}
 #editpanel #tab-properties{left:35%;}
 #editpanel #tab-events{right:10px;}
-#editpanel #methodlistpanel{position:absolute;width:180px;top:70px;bottom:10px;overflow:auto;background:#999999;left:10px;border-bottom-left-radius:3px;border-left:1px solid #666666;}#editpanel #methodlistpanel.selected{background:#666666;}#editpanel #methodlistpanel.selected ul li{background:#ffffff;color:#000;}
+#editpanel #methodlistpanel{position:absolute;width:180px;top:70px;bottom:10px;overflow:auto;-webkit-overflow-scrolling:touch;background:#999999;left:10px;border-bottom-left-radius:3px;border-left:1px solid #666666;}#editpanel #methodlistpanel.selected{background:#666666;}#editpanel #methodlistpanel.selected ul li{background:#ffffff;color:#000;}
 #editpanel #methodlistpanel ul{background:transparent;list-style:none;padding:0;padding-top:10px;padding-left:10px;padding-right:10px;margin:0;}#editpanel #methodlistpanel ul .method{height:20px;margin-top:3px;padding-left:12px;padding-right:0;line-height:150%;background:#b3b3b3;color:#666666;cursor:default;}#editpanel #methodlistpanel ul .method.disabled{background:#b3b3b3;color:#666666;}
 #editpanel #methodlistpanel ul .method:hover,#editpanel #methodlistpanel ul .method.hover{color:black;background:#cceeff;}
 #editpanel #methodlistpanel ul .method.selected{background:#66ccff;font-weight:bold;}
@@ -127,7 +127,7 @@ body:-moz-full-screen .toolbar .fullscreen{background-image:url('../img/icons/ic
 #editpanel #methodlistpanel ul .event:hover.add:after,#editpanel #methodlistpanel ul .event.hover.add:after{content:"";border-color:transparent transparent transparent transparent;border-style:solid;border-width:10px 7px;position:absolute;width:0;height:0;left:-4px;}
 #editpanel #methodlistpanel ul .event.selected:after{content:"";border-color:transparent #66ccff transparent transparent;border-style:solid;border-width:10px 7px;position:absolute;width:0;height:0;left:-4px;}
 #editpanel #methodlistpanel ul .event.is-linked:before{content:"";border-color:transparent transparent transparent #808080;border-style:solid;border-width:10px 7px;position:absolute;width:0;height:0;right:-4px;z-index:100;}
-#editpanel #eventlistpanel{position:absolute;width:180px;top:70px;bottom:10px;overflow:auto;background:#999999;right:10px;border-bottom-right-radius:3px;border-right:1px solid #4d4d4d;}#editpanel #eventlistpanel.selected{background:#666666;}#editpanel #eventlistpanel.selected ul li{background:#ffffff;color:#000;}
+#editpanel #eventlistpanel{position:absolute;width:180px;top:70px;bottom:10px;overflow:auto;-webkit-overflow-scrolling:touch;background:#999999;right:10px;border-bottom-right-radius:3px;border-right:1px solid #4d4d4d;}#editpanel #eventlistpanel.selected{background:#666666;}#editpanel #eventlistpanel.selected ul li{background:#ffffff;color:#000;}
 #editpanel #eventlistpanel ul{background:transparent;list-style:none;padding:0;padding-top:10px;padding-left:10px;padding-right:10px;margin:0;}#editpanel #eventlistpanel ul .method{height:20px;margin-top:3px;padding-left:12px;padding-right:0;line-height:150%;background:#b3b3b3;color:#666666;cursor:default;}#editpanel #eventlistpanel ul .method.disabled{background:#b3b3b3;color:#666666;}
 #editpanel #eventlistpanel ul .method:hover,#editpanel #eventlistpanel ul .method.hover{color:black;background:#cceeff;}
 #editpanel #eventlistpanel ul .method.selected{background:#66ccff;font-weight:bold;}
@@ -146,7 +146,7 @@ body:-moz-full-screen .toolbar .fullscreen{background-image:url('../img/icons/ic
 #editpanel #eventlistpanel ul .event:hover.add:after,#editpanel #eventlistpanel ul .event.hover.add:after{content:"";border-color:transparent transparent transparent transparent;border-style:solid;border-width:10px 7px;position:absolute;width:0;height:0;left:-4px;}
 #editpanel #eventlistpanel ul .event.selected:after{content:"";border-color:transparent #66ccff transparent transparent;border-style:solid;border-width:10px 7px;position:absolute;width:0;height:0;left:-4px;}
 #editpanel #eventlistpanel ul .event.is-linked:before{content:"";border-color:transparent transparent transparent #808080;border-style:solid;border-width:10px 7px;position:absolute;width:0;height:0;right:-4px;z-index:100;}
-#editpanel #detailspanel{position:absolute;top:70px;bottom:10px;left:190px;right:190px;overflow:scroll;border-radius:3px;padding:10px;background:#585858;box-shadow:4px 2px 4px rgba(0, 0, 0, 0.05),-4px 2px 4px rgba(0, 0, 0, 0.05),-4px -2px 4px rgba(0, 0, 0, 0.05);border-left:1px solid #656565;border-top:1px solid #656565;border-right:1px solid #656565;}#editpanel #detailspanel.selected{display:block;}
+#editpanel #detailspanel{position:absolute;top:70px;bottom:10px;left:190px;right:190px;overflow:scroll;-webkit-overflow-scrolling:touch;border-radius:3px;padding:10px;background:#585858;box-shadow:4px 2px 4px rgba(0, 0, 0, 0.05),-4px 2px 4px rgba(0, 0, 0, 0.05),-4px -2px 4px rgba(0, 0, 0, 0.05);border-left:1px solid #656565;border-top:1px solid #656565;border-right:1px solid #656565;}#editpanel #detailspanel.selected{display:block;}
 #editpanel #detailspanel .code{padding:10px;color:black;background:#eee;box-shadow:1px 1px 2px rgba(0, 0, 0, 0.15);border-radius:3px;}#editpanel #detailspanel .code p,#editpanel #detailspanel .code pre{font-family:"Menlo","Courier New",monospace;font-size:0.9em;margin:0 0 1px 0;}
 #editpanel #detailspanel .code .comment{color:#aaa;}
 .paneltitle{margin-top:4px;text-align:center;font-weight:bold;}

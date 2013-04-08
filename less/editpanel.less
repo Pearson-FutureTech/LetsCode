@@ -114,6 +114,7 @@
 		top: @tab-top+@tab-height;
 		bottom: @ui-spc;
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
         background: @col-detailspanel;
 
         &.selected { // overrides when panel selected
@@ -179,6 +180,7 @@
         top: @tab-top+@tab-height; bottom: @ui-spc;
         left: @panellist-width+@ui-spc; right: @panellist-width+@ui-spc;
         overflow: scroll;
+        -webkit-overflow-scrolling: touch;
         border-radius: 3px;
         padding: @ui-spc;
         background: @col-detailspanel-sel;

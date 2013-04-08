@@ -382,7 +382,7 @@ a {
     @media screen and (max-width : 900px) {
         #tb-undo,
         #tb-redo {
-            display: none;
+            display: none !important;
         }
     }
 }
@@ -555,6 +555,7 @@ body:-moz-full-screen .toolbar .fullscreen {
         left: 0; right: 0; top: 43px; bottom: 0;
         margin: 5px;
         overflow: scroll;
+        -webkit-overflow-scrolling: touch;
         color: #222;
         padding: @ui-spc;
 
