@@ -64,6 +64,10 @@
 
                     }
                 }
+
+                @media screen and (max-width : 640px) {
+                    display: none;
+                }
             }
 
             #desc-panel, .lesson-panel {
@@ -72,6 +76,17 @@
                     float: right;
                     width: 410px;
                     padding: 50px 10px 0 10px;
+
+                    @media screen and (max-width : 640px) {
+                        float: none;
+                        width: 480px;
+                        margin: 0 auto;
+                    }
+                    @media screen and (max-width : 320px) {
+                        float: none;
+                        width: 300px;
+                        margin: 0 auto;
+                    }
                 }
 
                 &.lesson-panel {
@@ -80,6 +95,15 @@
                     top: 180px;
                     min-height: 500px;
                     padding: 0 30px;
+
+                    @media screen and (max-width : 640px) {
+                        width: 480px;
+                        margin: 0 auto;
+                    }
+                    @media screen and (max-width : 320px) {
+                        width: 260px;
+                        margin: 0 auto;
+                    }
                 }
                 margin: 0;
                 padding: 0;
