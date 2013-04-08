@@ -106,11 +106,9 @@ between.
 
 We built Let's Code! with the aim that it should be easy to swap the Long Jump for
 other scenarios. And it should be relatively easy to create new scenarios from
-scratch. It's possible you may run into some issues though. In particular, it may be
-a bit tricky to support multiple scenarios in the same app, since we haven't yet set
-up a proper URL structure (you may notice the hash never changes). You could try
-swapping over the default scenario in router.js though (see the comments there).
-Give it a try and please let us know if you hit any hurdles.
+scratch. It's possible you may run into some issues though. You could start by taking
+a look at where the 'longjump' scenario is defined in router.js (see the comments
+there). Please let us know if you hit any hurdles.
 
  - Code editing
 
