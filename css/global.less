@@ -4,8 +4,7 @@
 //
 
 // Default font
-@font-family:  arial, sans-serif;
-
+@font-family:  'Roboto', sans-serif;
 
 // Standard UI Colours
 @col-ui-green: #9c3;
@@ -25,14 +24,14 @@
 @col-text-highlight: @col-text;
 
 @col-button: @col-ui-blue;
-@col-button-desel: @col-ui-ltgrey;
+@col-button-desel: #888;
 @col-button-disabled: @col-ui-grey;
 @col-button-text: #fff;
 //@col-button-text-disabled: @col-ui-ltgrey; //transparent(@col-button-text, 50%);
 @col-button-toolbar: @col-ui-green;
 @col-button-toolbar-text: #fff;
 
-@col-tab: #999;
+@col-tab: #444;
 @col-tab-sel: #666;
 @col-tab-top: #fff;
 @col-tab-top-sel: #f63;
@@ -41,8 +40,8 @@
 @col-panellist-sel: lighten(@col-ui-blue, 0%);
 @col-panellist-disabled: #999;
 @col-panellist-hover: lighten(@col-ui-blue, 20%);
-@col-detailspanel: #999;
-@col-detailspanel-sel: #585858;
+@col-detailspanel: @col-tab;
+@col-detailspanel-sel: @col-tab-sel;//#585858;
 
 @col-stage-label-bg: #444; //darken(@col-ui-grey, 0%);
 @col-stage-label-highlight: @col-ui-blue;
@@ -52,13 +51,13 @@
 
 // Geometry
 @min-width: 768px;
-@ui-spc: 10px;                      // Default spacer between UI components
+@ui-spc: 8px;                      // Default spacer between UI components
 @ui-spc-list: round(@ui-spc/3);     // spacer between list items
 @ui-bradius: 14px;
 @button-height: 20px;
 @toolbar-inner-height: 25px;
-@tab-height: 25px;
-@tab-top: @ui-spc*2 + @tab-height;
+@tab-height: 20px;
+@tab-top: @tab-height + 15px;
 @panellist-width: 180px;
 @panellist-height: 20px;
 @bracket-width: 20%;
@@ -78,11 +77,12 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
-    font-family: arial, sans-serif;
-    font-size: 0.9em;
     text-decoration: none;
     color: @col-text;
 	background: #999;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	font-weight: 300;
 }
 
 #letscode {
@@ -100,22 +100,24 @@ a {
 .ui-button {
     //height: @button-height;
     background-color: @col-button;
-    background-color: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
-    background-color: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
-    padding: @ui-spc/2 @ui-spc*1.5 @ui-spc/2 @ui-spc*1.5;
+    //background-color: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
+    //background-color: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
+    padding: 3px 12px;
     border-radius: @ui-bradius;
     color: @col-button-text;
-    text-shadow:
-        1px 1px 1px rgba(255, 255, 255, 0.25),
-        -1px -1px 1px rgba(0, 0, 0, 0.25);
+	font-weight: 300;
+    //text-shadow:
+    //    1px 1px 1px rgba(255, 255, 255, 0.25),
+    //    -1px -1px 1px rgba(0, 0, 0, 0.25);
     text-align: center;
     cursor: default;
     display: inline-block;
 
-    // contained elements
+	// contained    elements
     select {
         font-family: @font-family;
         font-size: 13px;
+		font-weight: 200;
     }
 
     // button groups
@@ -141,32 +143,31 @@ a {
     // button states and pseudo-classes
     &:hover {
         background-color: lighten(@col-button, 10%);
-        background-color: -webkit-linear-gradient(270deg, lighten(@col-button, 10%), @col-button);
-        background-color: -moz-linear-gradient(top, lighten(@col-button, 10%), @col-button);
+        //background-color: -webkit-linear-gradient(270deg, lighten(@col-button, 10%), @col-button);
+        //background-color: -moz-linear-gradient(top, lighten(@col-button, 10%), @col-button);
         color: @col-text-highlight;
     }
     &.deselected {
         background: @col-button-desel;
-        background: -webkit-linear-gradient(270deg, @col-button-desel, darken(@col-button-desel, 20%));
-        background: -moz-linear-gradient(top, @col-button-desel, darken(@col-button-desel, 20%));
+        //background: -webkit-linear-gradient(270deg, @col-button-desel, darken(@col-button-desel, 20%));
+        //background: -moz-linear-gradient(top, @col-button-desel, darken(@col-button-desel, 20%));
 
         &:hover {
             background: lighten(@col-button-desel, 10%);
-            background: -webkit-linear-gradient(270deg, lighten(@col-button-desel, 10%), @col-button-desel);
-            background: -moz-linear-gradient(top, lighten(@col-button-desel, 10%), @col-button-desel);
+            //background: -webkit-linear-gradient(270deg, lighten(@col-button-desel, 10%), @col-button-desel);
+            //background: -moz-linear-gradient(top, lighten(@col-button-desel, 10%), @col-button-desel);
             color: @col-text-highlight;
         }
     }
     &.disabled {
         background: @col-button-disabled;
-        background: -webkit-linear-gradient(270deg, lighten(@col-button-disabled, 10%), @col-button-disabled);
-        background: -moz-linear-gradient(top, lighten(@col-button-disabled, 10%), @col-button-disabled);
-        //color: @col-button-text;
+        //background: -webkit-linear-gradient(270deg, lighten(@col-button-disabled, 10%), @col-button-disabled);
+        //background: -moz-linear-gradient(top, lighten(@col-button-disabled, 10%), @col-button-disabled);
         opacity: 0.5;
         &:hover { // override highlight when disabled
             background: @col-button-disabled;
-            background: -webkit-linear-gradient(270deg, lighten(@col-button-disabled, 10%), @col-button-disabled);
-            background: -moz-linear-gradient(top, lighten(@col-button-disabled, 10%), @col-button-disabled);
+            //background: -webkit-linear-gradient(270deg, lighten(@col-button-disabled, 10%), @col-button-disabled);
+            //background: -moz-linear-gradient(top, lighten(@col-button-disabled, 10%), @col-button-disabled);
             color: @col-button-text;
         }
     }
@@ -197,22 +198,22 @@ a {
 
 .toolbar .ui-button {
     background: @col-button-toolbar;
-    background: -webkit-linear-gradient(270deg, @col-button-toolbar, darken(@col-button-toolbar, 10%));
-    background: -moz-linear-gradient(top, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+    //background: -webkit-linear-gradient(270deg, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+    //background: -moz-linear-gradient(top, @col-button-toolbar, darken(@col-button-toolbar, 10%));
     color: @col-button-toolbar-text;
 
     &:hover {
         background: lighten(@col-button-toolbar, 10%);
-        background: -webkit-linear-gradient(270deg, lighten(@col-button-toolbar, 10%), @col-button-toolbar);
-        background: -moz-linear-gradient(top, lighten(@col-button-toolbar, 10%), @col-button-toolbar);
+        //background: -webkit-linear-gradient(270deg, lighten(@col-button-toolbar, 10%), @col-button-toolbar);
+        //background: -moz-linear-gradient(top, lighten(@col-button-toolbar, 10%), @col-button-toolbar);
         color: @col-text-highlight;
     }
     &.disabled {
         opacity: 0.5;
         &:hover { // override highlight when disabled
             background: @col-button-toolbar;
-            background: -webkit-linear-gradient(270deg, @col-button-toolbar, darken(@col-button-toolbar, 10%));
-            background: -moz-linear-gradient(top, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+            //background: -webkit-linear-gradient(270deg, @col-button-toolbar, darken(@col-button-toolbar, 10%));
+            //background: -moz-linear-gradient(top, @col-button-toolbar, darken(@col-button-toolbar, 10%));
             color: @col-button-toolbar-text;
         }
     }
@@ -231,6 +232,7 @@ a {
     border-right: 1px solid darken(@col-tab, 30%);
     padding-top: 3px;
     text-align: center;
+	font-weight: 300;
     cursor: default;
 
     &:hover {
@@ -240,7 +242,7 @@ a {
     &.selected {
         background: @col-tab-sel;
         border-top: 3px solid @col-tab-top-sel;
-        font-weight: bold;
+        color: lighten(@col-tab-top-sel, 15%);
     }
     &.disabled {
         background: @col-button-disabled;
@@ -296,12 +298,12 @@ a {
     position: fixed;
     z-index: 10;
     width: 100%;
-    height: @button-height + @ui-spc/2;
+    height: 22px;
     min-width: @min-width;
     background: @col-background;
     background: -webkit-linear-gradient(90deg, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
     background: -moz-linear-gradient(bottom, lighten(@col-background, 20%) 0px, darken(@col-background, 0%) 3px);
-    padding: @ui-spc 0;
+    padding: 6px 0;
 
     .letscode-logo {
         float: left;
@@ -356,14 +358,14 @@ a {
 			float: right;
 			width: 60px;
 			background: @col-button;
-			background: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
-			background: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
+			//background: -webkit-linear-gradient(270deg, @col-button, darken(@col-button, 20%));
+			//background: -moz-linear-gradient(top, @col-button, darken(@col-button, 20%));
 		}
 
 		.ui-button.deselected {
 			background: @col-button-desel;
-			background: -webkit-linear-gradient(270deg, @col-button-desel, darken(@col-button-desel, 20%));
-			background: -moz-linear-gradient(top, @col-button-desel, darken(@col-button-desel, 20%));
+			//background: -webkit-linear-gradient(270deg, @col-button-desel, darken(@col-button-desel, 20%));
+			//background: -moz-linear-gradient(top, @col-button-desel, darken(@col-button-desel, 20%));
 		}
 	}
     .fullscreen {
@@ -411,7 +413,7 @@ body:-moz-full-screen .toolbar .fullscreen {
 
 #lessonpanel {
     position: fixed;
-    top: 45px; left: 0; right: 0;
+    top: 34px; left: 0; right: 0;
 	height: 36px;
     background: rgba(0, 0, 0, 0.5);
     padding: 0;
@@ -428,10 +430,10 @@ body:-moz-full-screen .toolbar .fullscreen {
     .close-button {
         float: right;
         background-image: url('../img/icons/icon-close-white-circle.png');
-        background-position: 93px 6px;
+        background-position: 93px 4px;
         background-repeat: no-repeat;
         padding-right: 35px;
-        margin: 3px @ui-spc 0 0;
+        margin: 8px @ui-spc 0 0;
     }
 }
 

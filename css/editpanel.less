@@ -35,7 +35,7 @@
         position: absolute;
         height: @button-height;
         left: @ui-spc;
-        top: @ui-spc;
+        top: 6px;
         margin: 0;
         padding: 0;
     }
@@ -50,9 +50,9 @@
 		/* Custom-styled select */
 		select {
 			color: @col-button-text;
-			text-shadow:
-				1px 1px 1px rgba(255, 255, 255, 0.25),
-					-1px -1px 1px rgba(0, 0, 0, 0.25);
+			//text-shadow:
+			//	1px 1px 1px rgba(255, 255, 255, 0.25),
+			//		-1px -1px 1px rgba(0, 0, 0, 0.25);
 			background: transparent;
 			width: 150px;
 			height: 25px;
@@ -61,7 +61,7 @@
 			position: relative;
 			top: -8px;
 			left: -15px;
-			padding: 5px 5px 5px 10px;
+			padding: 2px 3px 3px 12px;
 			/* Hide standard dropdown arrow for WebKit */
 			-webkit-appearance: none;
 			/* Hide standard dropdown arrow from Firefox (again, hacky) */
@@ -73,7 +73,8 @@
     #btn-addobject {
         float: left;
         width: 25px;
-        font-size: 1.3em;
+		height: 15px;
+        font-size: 19px;
         line-height:80%;
         //.ui-button-icon(left, '../img/icons/icon-add-white.png');
     }
@@ -82,7 +83,7 @@
         position: absolute;
         height: @button-height;
         right: @ui-spc;
-        top: @ui-spc;
+        top: 6px;
         margin: 0;
         padding: 0;
     }
@@ -111,7 +112,7 @@
     .panellist () {
         position: absolute;
         width: @panellist-width;
-		top: @tab-top+@tab-height;
+		top: 60px;
 		bottom: @ui-spc;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
@@ -133,7 +134,7 @@
             padding-top: @ui-spc;
             padding-left: @ui-spc;
             padding-right: @ui-spc;
-            margin: 0;
+            margin: 0 2px 0 2px;
 
             .method {
                 .method-event-item();
@@ -177,7 +178,7 @@
 
     #detailspanel {
         position: absolute;
-        top: @tab-top+@tab-height; bottom: @ui-spc;
+        top: 60px; bottom: @ui-spc;
         left: @panellist-width+@ui-spc; right: @panellist-width+@ui-spc;
         overflow: scroll;
         -webkit-overflow-scrolling: touch;
@@ -225,7 +226,8 @@
 .paneltitle{
     margin-top: 4px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 300;
+	color: lighten(@col-tab-top-sel, 15%);
 }
 
 #details-contents {
@@ -402,7 +404,7 @@
 .propitem {
     margin-left: @ui-spc;
     margin-right: @ui-spc;
-    padding: @ui-spc/2;
+    padding: 1px;
     min-height: @panellist-height;
     color: @col-ui-ltgrey;
     font-family: @font-family;
@@ -476,7 +478,7 @@
         width: 20px;
         height: 20px;
         background-image: url('../img/icons/icon-close-white-circle.png');
-        background-position: 0px 3px;
+        background-position: 0px 4px;
         background-repeat: no-repeat;
         opacity: 0.5;
         &:hover {
@@ -528,17 +530,17 @@
 
     .title {
         background: @col-ui-grey;
-        background: -webkit-linear-gradient(90deg, @col-ui-grey, darken(@col-ui-grey, 5%));
-        background: -moz-linear-gradient(bottom, @col-ui-grey darken(@col-ui-grey, 5%));
+        //background: -webkit-linear-gradient(90deg, @col-ui-grey, darken(@col-ui-grey, 5%));
+        //background: -moz-linear-gradient(bottom, @col-ui-grey darken(@col-ui-grey, 5%));
         font-weight: bold;
         margin: 0;
-        padding: 8px 0 9px @ui-spc;
+        padding: 4px 0 4px @ui-spc;
         text-align: center;
 
         .close-button {
             content:url('../img/icons/icon-close-white-circle.png');
             float: right;
-            padding-right: 5px;
+            padding-right: 2px;
             opacity: 0.5;
             &:hover {
                 opacity: 1.0;
@@ -551,39 +553,40 @@
         li {
             list-style: none;
             width: 100%;
-            height: 70px;
+            height: 45px;
             @col-listitem: lighten(@col-ui-ltgrey, 30%);
             @col-listitem-sel: lighten(@col-ui-ltgrey, 20%);
             background: @col-listitem;
-            background: -webkit-linear-gradient(270deg, @col-listitem, darken(@col-listitem, 10%));
-            background: -moz-linear-gradient(top, @col-listitem darken(@col-listitem, 10%));
+            //background: -webkit-linear-gradient(270deg, @col-listitem, darken(@col-listitem, 10%));
+            //background: -moz-linear-gradient(top, @col-listitem darken(@col-listitem, 10%));
+			border: 1px solid @col-ui-ltgrey;
 			overflow: hidden;
 			cursor: pointer;
 
             &:hover {
-                box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.25) inset;
+                //box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.25) inset;
                 background: @col-listitem-sel;
-                background: -webkit-linear-gradient(90deg, @col-listitem-sel, darken(@col-listitem-sel, 10%));
-                background: -moz-linear-gradient(bottom, @col-listitem-sel darken(@col-listitem-sel, 10%));
+                //background: -webkit-linear-gradient(90deg, @col-listitem-sel, darken(@col-listitem-sel, 10%));
+                //background: -moz-linear-gradient(bottom, @col-listitem-sel darken(@col-listitem-sel, 10%));
             }
 
             img {
-                width: 60px; height: 60px;
+                width: 39px; height: 39px;
                 float: right;
-                padding: 5px @ui-spc 0 0;
+                padding: 3px 3px 0 0;
             }
             .name {
                 display: block;
-                padding: 23px 0 0 @ui-spc*2;
+                padding: 6px 0 0 @ui-spc;
                 margin: 0;
                 color: black;
                 font-weight: bold;
             }
             .desc {
                 display: block;
-                padding: 2px 0 0 @ui-spc*2;
+                padding: 2px 0 0 @ui-spc;
                 margin: 0;
-                color: @col-ui-grey;
+                color: @col-ui-ltgrey;
             }
         }
     }
